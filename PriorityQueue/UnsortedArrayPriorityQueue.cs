@@ -53,35 +53,67 @@ namespace PriorityQueue
             {
                 if (_storage[i].Priority > _storage[highestPriorityIndex].Priority)
                 {
-                    highestPriorityIndex = _storage[i].Priority;
+                    highestPriorityIndex = i;
                 }
             }
             return _storage[highestPriorityIndex].Item;
         }
 
 
-        ///// <summary>
-        ///// Method to add an item and priority to the unsorted array priority queue.
-        ///// Check if the tailIndex is greater than the array size, if so, throw exception error.
-        ///// Increment the tailIndex and insert the new PriorityItem into that position. 
-        ///// </summary>
-        ///// <param name="item">the item name</param>
-        ///// <param name="priority">the priority of the item</param>
-        //void Add(T item, int priority)
-        //{
-        //    _tailIndex++;
-        //    if (_tailIndex >= _capacity)
-        //    {
-        //        _tailIndex--;
-        //        throw new QueueOverflowException();
-        //    }
-        //    _storage[_tailIndex] = new PriorityItem<T>(item, priority);
-        //}
+        /// <summary>
+        /// Method to add an item and priority to the unsorted array priority queue.
+        /// Check if the tailIndex is greater than the array size, if so, throw exception error.
+        /// Increment the tailIndex and insert the new PriorityItem into that position. 
+        /// </summary>
+        /// <param name="item">the item name</param>
+        /// <param name="priority">the priority of the item</param>
+        public void Add(T item, int priority)
+        {
+            _tailIndex++;
+            if (_tailIndex >= _capacity)
+            {
+                _tailIndex--;
+                throw new QueueOverflowException();
+            }
+            _storage[_tailIndex] = new PriorityItem<T>(item, priority);
+        }
 
+        /// <summary>
+        /// Method to remove the Item with the Highest Priority from the array, then shift each element afterwards
+        /// down one position. Check if the array IsEmpty, if so, throw UnderflowException error. Find the Index with
+        /// the Highest Priority. Looping from the Highest Priority Index, shift each Index down one position. Decreasing 
+        /// the tail Index by 1. 
+        /// </summary>
+        /// <exception cref="QueueUnderflowException"></exception>
+        public void Remove()
+        {
+            if (IsEmpty())
+            {
+                throw new QueueUnderflowException();
+            }
 
-        //void Remove() 
-        //{
-        //}
+            int highestPriorityIndex = 0;
+            for(int i = 0; i <= _tailIndex; i++)
+            {
+                if (_storage[i].Priority > _storage[highestPriorityIndex].Priority)
+                {
+                    highestPriorityIndex = i;
+                }
+            }
+
+            for(int i = highestPriorityIndex; i <= _tailIndex; i++)
+            {
+                _storage[i] = _storage[i + 1];
+            }
+
+            _tailIndex--;
+
+            // check if array is empty, throw exception if so
+            // linear search for highest priority item in the array
+            // remove the item, then shift the array indexs down one position
+            // decrease tail index by 1
+  
+        }
 
 
         /// <summary>

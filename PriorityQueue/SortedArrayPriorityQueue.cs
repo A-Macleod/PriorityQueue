@@ -52,7 +52,7 @@ namespace PriorityQueue
         /// Method to add an item and priority to the sorted array priority queue. Increments
         /// the tailIndex by 1 and checks if the size of the array is greater or equal to the
         /// capacity. If so, throws an exception. Starting at the tail index, check if the previous 
-        /// Index priority is less than the incoming priority, if so move lower priority item to the right.
+        /// Index priority is less than the incoming priority, if so move lower priority item (previous) to the right.
         /// The new PriorityItem is now inserted into this space. 
         /// </summary>
         /// <param name="item"></param>
@@ -78,9 +78,10 @@ namespace PriorityQueue
 
 
         /// <summary>
-        /// Method to check if array tailIndex is less than 0. If so thow UnderflowException.
+        /// Method to remove the Highest Priority item at Index 0.
+        /// Check if array tailIndex is less than 0. If so thow UnderflowException.
         /// Iterates through the array and copys and moves each Index one to the left. Then
-        /// removes the tail index item from the array
+        /// decrements the tailIndex
         /// </summary>
         /// <exception cref="QueueUnderflowException"></exception>
         public void Remove()
