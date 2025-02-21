@@ -93,7 +93,7 @@ namespace PriorityQueue
             }
 
             int highestPriorityIndex = 0;
-            for(int i = 0; i <= _tailIndex; i++)
+            for(int i = 0; i < _tailIndex; i++)
             {
                 if (_storage[i].Priority > _storage[highestPriorityIndex].Priority)
                 {
@@ -101,7 +101,7 @@ namespace PriorityQueue
                 }
             }
 
-            for(int i = highestPriorityIndex; i <= _tailIndex; i++)
+            for(int i = highestPriorityIndex; i < _tailIndex ; i++)
             {
                 _storage[i] = _storage[i + 1];
             }
