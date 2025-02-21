@@ -4,7 +4,8 @@ namespace PriorityQueue
 {
 
     /// <summary>
-    /// Class to represent a sorted, array based, priority queue
+    /// Class to represent a sorted, array based, priority queue.
+    /// Inheriting members from the PriorityQueue Interface.
     /// </summary>
     /// <typeparam name="T">Generic type</typeparam>
     public class SortedArrayPriorityQueue<T> : PriorityQueue<T>
@@ -20,7 +21,7 @@ namespace PriorityQueue
 
         /// <summary>
         /// Constructor for sorted array priority queue that takes in a size argument
-        /// to determine the size of the array
+        /// to determine the size of the array we want to create
         /// </summary>
         /// <param name="size">The array size</param>
         public SortedArrayPriorityQueue(int size)
@@ -32,7 +33,8 @@ namespace PriorityQueue
 
 
         /// <summary>
-        /// Method to return the head of the array, at index 0, and the Item data
+        /// Method to return the head of the array, at index 0, the Item name.
+        /// This is the item with Highest Priority.
         /// </summary>
         /// <returns>Index position 0 item data</returns>
         /// <exception cref="QueueUnderflowException"></exception>
