@@ -105,14 +105,7 @@ namespace PriorityQueue
             {
                 _storage[i] = _storage[i + 1];
             }
-
             _tailIndex--;
-
-            // check if array is empty, throw exception if so
-            // linear search for highest priority item in the array
-            // remove the item, then shift the array indexs down one position
-            // decrease tail index by 1
-  
         }
 
 
@@ -127,8 +120,31 @@ namespace PriorityQueue
         }
 
 
-        //string ToString() 
-        //{ 
-        //}
+        /// <summary>
+        /// Method to override the ToString method and throw an exception if the array is empty (tailIndex is less than 0).
+        /// Adds a bracket infront and after each returned array index value, seperated by an added comma in the nested loop.
+        /// Returns each index value in the array, the Item and Priority.
+        /// </summary>
+        /// <returns>Array index value</returns>
+        /// <exception cref="QueueUnderflowException"></exception>
+        public override string ToString()
+        {
+            if (IsEmpty())
+            {
+                throw new QueueUnderflowException("No items to display");
+            }
+
+            string result = "[";
+            for (int i = 0; i <= _tailIndex; i++)
+            {
+                if (i > 0)
+                {
+                    result += ", ";
+                }
+                result += _storage[i];
+            }
+            result += "]";
+            return result;
+        }
     }
 }
