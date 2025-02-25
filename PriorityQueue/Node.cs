@@ -26,7 +26,7 @@ namespace PriorityQueue
         /// <param name="data">The name of the person</param>
         /// <param name="priority">The priority of the person</param>
         /// <param name="next">The pointer to the Next Node</param>
-        public Node(T data, int priority, Node<T> next)
+        public Node(T data, int priority)
         {
             Data = data;
             Priority = priority;
