@@ -20,12 +20,13 @@ namespace PriorityQueue
         }
 
 
+        public void Add(T data, int priority)
+        {
+            Node<T> newNode = new Node<T>(data, priority);  // create new node
+            newNode.Next = _head;                           // point it to the current head
+            _head = newNode;                                // update the head to point to the new node (start point) 
 
-
-
-
-
-
+        }
 
 
 
