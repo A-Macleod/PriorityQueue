@@ -110,10 +110,11 @@ namespace PriorityQueue
 
 
         /// <summary>
-        /// Method to return true or false if the tailIndex is less than 0. This shows us the array is empty
-        /// as each newly added item increases the tail by 1 index. The first item will be index 0.
+        /// Method to return true if the tailIndex is less than 0. This shows us the array is empty
+        /// as each newly added item increases the tail by 1 index. The first item in the array will be index 0,
+        /// as the array is created with a default index of -1
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if the tail index is less than 0</returns>
         public bool IsEmpty()
         {
             return _tailIndex < 0;

@@ -42,7 +42,7 @@ namespace PriorityQueue
 
         private void InitUnsortedArrayQueue()
         {
-            queue = new UnsortedArrayPriorityQueue<Person>(3);
+            queue = new UnsortedArrayPriorityQueue<Person>(8);
             Lbl_Output.Text = "New unsorted array priority queue created";
         }
 

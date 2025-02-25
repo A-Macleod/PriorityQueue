@@ -36,7 +36,7 @@ namespace PriorityQueue
         /// Method to return the head of the array, at index 0, the Item name.
         /// This is the item with Highest Priority.
         /// </summary>
-        /// <returns>Index position 0 item data</returns>
+        /// <returns>Array index position 0, the person name</returns>
         /// <exception cref="QueueUnderflowException"></exception>
         public T Head()
         {
@@ -55,8 +55,8 @@ namespace PriorityQueue
         /// Index priority is less than the incoming priority, if so move lower priority item (previous) to the right.
         /// The new PriorityItem is now inserted into this space. 
         /// </summary>
-        /// <param name="item"></param>
-        /// <param name="priority"></param>
+        /// <param name="item">The name of the person</param>
+        /// <param name="priority">The priority of the person</param>
         /// <exception cref="QueueOverflowException"></exception>
         public void Add(T item, int priority)
         {
@@ -101,9 +101,10 @@ namespace PriorityQueue
 
         /// <summary>
         /// Method to return true if the tailIndex is less than 0. This shows us the array is empty
-        /// as each newly added item increases the tail by 1 index. The first item will be index 0.
+        /// as each newly added item increases the tail by 1 index. The first item in the array will be index 0,
+        /// as the array is created with a default index of -1
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True if the tail index is less than 0</returns>
         public bool IsEmpty()
         {
             return tailIndex < 0;
