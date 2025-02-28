@@ -70,9 +70,6 @@ namespace PriorityQueue
                 }
                 currentNode.Next = newNode;
             }
-
-
-
         }
 
 
@@ -136,9 +133,10 @@ namespace PriorityQueue
 
         /// <summary>
         /// Method to override the ToString method and throw an exception if there is no Nodes created.
+        /// Traverses the LinkedList and adds each Nodes Item and Priority to the result. 
         /// Returns each Nodes value in the LinkedList, the Item and Priority. Seperated by a comma in a braket wrapper.
         /// </summary>
-        /// <returns>Array index value</returns>
+        /// <returns>Each Nodes, Item and Priority</returns>
         /// <exception cref="QueueUnderflowException"></exception>
         public override string ToString()
         {
@@ -147,16 +145,22 @@ namespace PriorityQueue
                 throw new QueueUnderflowException("No items to display");
             }
 
-            Node<T> currentNode = _head;
+            Node<T>currentNode = _head;
             string first = "[";
-            string res = "";
+            string result = "";
             string last = "]";
-            while (currentNode != null)
+            
+
+            while (currentNode != null) // Keep traversing until the end of the LinkedList
             {
-                res += $"( {currentNode.Item},{currentNode.Priority} )";
-                currentNode = currentNode.Next;
+                if (currentNode != _head)   // Seperate results after _head with a comma
+                {
+                    result += ", ";
+                }
+                result += $"({currentNode.Item},{currentNode.Priority})";
+                currentNode = currentNode.Next; // Move to the Next Node
             }
-            return first + res + last;
+            return first + result + last;
         }
     }
 }
