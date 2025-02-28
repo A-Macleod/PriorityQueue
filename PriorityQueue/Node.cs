@@ -14,7 +14,7 @@ namespace PriorityQueue
     /// <typeparam name="T">Generic data type</typeparam>
     public class Node<T>
     {
-        public T Data { get; set; }
+        public T Item { get; set; }
         public int Priority { get; set; }
         public Node<T> Next { get; set; }
 
@@ -26,9 +26,9 @@ namespace PriorityQueue
         /// <param name="data">The name of the person</param>
         /// <param name="priority">The priority of the person</param>
         /// <param name="next">The pointer to the Next Node</param>
-        public Node(T data, int priority)
+        public Node(T item, int priority)
         {
-            Data = data;
+            Item = Item;
             Priority = priority;
             Next = null;
         }
