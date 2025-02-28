@@ -29,8 +29,8 @@ namespace PriorityQueue
         /// <param name="size">The array size</param>
         public UnsortedArrayPriorityQueue(int size)
         {
-            _storage = new PriorityItem<T>[size];
             _capacity = size;
+            _storage = new PriorityItem<T>[size];   
             _tailIndex = -1;
         }
 
@@ -78,6 +78,7 @@ namespace PriorityQueue
             _storage[_tailIndex] = new PriorityItem<T>(item, priority);
         }
 
+
         /// <summary>
         /// Method to remove the Item with the Highest Priority from the array, then shift each element afterwards
         /// down one position. Check if the array IsEmpty, if so, throw UnderflowException error. Find the Index with
@@ -92,20 +93,22 @@ namespace PriorityQueue
                 throw new QueueUnderflowException();
             }
 
+            // Finding Highest Priority Index
             int highestPriorityIndex = 0;
-            for(int i = 0; i < _tailIndex; i++)
+            for(int i = 1; i <= _tailIndex; i++)    // Starting from Index 1, going to the tailIndex 
             {
-                if (_storage[i].Priority > _storage[highestPriorityIndex].Priority)
+                if (_storage[i].Priority > _storage[highestPriorityIndex].Priority) // Compare Second Index [1] with Index [0] Priority
                 {
-                    highestPriorityIndex = i;
+                    highestPriorityIndex = i;       // If the looping Index is Higher, make that Index the Highest Priority Index  
                 }
             }
 
-            for(int i = highestPriorityIndex; i < _tailIndex ; i++)
+            // Removing Highest Priority Index, Moving down one position each Index after  
+            for(int i = highestPriorityIndex; i < _tailIndex; i++)
             {
-                _storage[i] = _storage[i + 1];
+                _storage[i] = _storage[i + 1];      // Move each Index down one, by copying from the next Index 
             }
-            _tailIndex--;
+            _tailIndex--;                           // Remove the last Index    
         }
 
 
