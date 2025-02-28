@@ -28,7 +28,7 @@ namespace PriorityQueue
         /// <param name="next">The pointer to the Next Node</param>
         public Node(T item, int priority)
         {
-            Item = Item;
+            Item = item;
             Priority = priority;
             Next = null;
         }
