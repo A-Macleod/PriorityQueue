@@ -55,9 +55,9 @@ namespace PriorityQueue
         /// <param name="priority">Priority of item</param>
         public void Add(T item, int priority)
         {
-            Node<T> newNode = new Node<T>(item, priority);  // create new node
+            Node<T> newNode = new Node<T>(item, priority);  // Create new node
 
-            if (_head == null)
+            if (_head == null)                              // If the head is null, the head is the newNode
             {
                 _head = newNode;
             }
@@ -133,10 +133,10 @@ namespace PriorityQueue
 
         /// <summary>
         /// Method to override the ToString method and throw an exception if there is no Nodes created.
-        /// Traverses the LinkedList and adds each Nodes Item and Priority to the result. 
+        /// Traverses the LinkedList and repeatedly adds each Nodes Item and Priority to the result string variable.
         /// Returns each Nodes value in the LinkedList, the Item and Priority. Seperated by a comma in a braket wrapper.
         /// </summary>
-        /// <returns>Each Nodes, Item and Priority</returns>
+        /// <returns>Each Nodes Item and Priority</returns>
         /// <exception cref="QueueUnderflowException"></exception>
         public override string ToString()
         {
@@ -145,22 +145,20 @@ namespace PriorityQueue
                 throw new QueueUnderflowException("No items to display");
             }
 
-            Node<T>currentNode = _head;
-            string first = "[";
-            string result = "";
-            string last = "]";
-            
+            Node<T> currentNode = _head;
+            string result = "[";
 
-            while (currentNode != null) // Keep traversing until the end of the LinkedList
+            while (currentNode != null)     // Keep traversing until the end of the LinkedList
             {
                 if (currentNode != _head)   // Seperate results after _head with a comma
                 {
                     result += ", ";
                 }
-                result += $"({currentNode.Item},{currentNode.Priority})";
-                currentNode = currentNode.Next; // Move to the Next Node
+                result += $"({currentNode.Item},{currentNode.Priority})";   // Add on the Item and Priority of the Node to the result variable
+                currentNode = currentNode.Next;                             // Move to the Next Node
             }
-            return first + result + last;
+            result += "]";                  // Add a square bracket to the end
+            return result;
         }
     }
 }
