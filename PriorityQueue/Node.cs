@@ -14,13 +14,17 @@ namespace PriorityQueue
     /// <typeparam name="T">Generic data type</typeparam>
     public class Node<T>
     {
+
+        /// <summary>
+        /// Private fields for Node class with auto properties to get and set the fields
+        /// </summary>
         public T Item { get; set; }
         public int Priority { get; set; }
         public Node<T> Next { get; set; }
 
 
         /// <summary>
-        /// Node constructor for the Node class. It will store the generic type Data, the 
+        /// Constructor for the Node class. It will store the generic type Item, the 
         /// Priority and the Pointer to the Next Node
         /// </summary>
         /// <param name="data">The name of the person</param>

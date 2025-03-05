@@ -10,16 +10,39 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace PriorityQueue
 {
+    /// <summary>
+    /// Class to represent an unsorted, linked list, priority queue. The Nodes are not 
+    /// linked or sorted in order of priority. The queue maintains the First In First Out
+    /// data structure. Traversing each node is needed to find the highest priority node for 
+    /// the dequeue, peek and ToString methods. Highest Priority is determined by the highest or 
+    /// largest integer number in the Priority field.
+    /// </summary>
+    /// <typeparam name="T">Generic data type</typeparam>
     public class UnsortedLinkedPriorityQueue<T> : PriorityQueue<T> 
     {
+
+        /// <summary>
+        /// Private field for UnsortedLinkedPriorityQueue
+        /// </summary>
         private Node<T> _head;
 
+
+        /// <summary>
+        /// Constructor for unsorted linked priority queue. Initializes the queue with the _head Node as null 
+        /// </summary>
         public UnsortedLinkedPriorityQueue()
         {
             _head = null;
         }
 
 
+        /// <summary>
+        /// UnsortedLinkedList method to return the name of the HighestPriority Item. Checking if the PriorityQueue
+        /// is empty and if so, throwing an exception error. Traverses the LinkedList checking each Node for the Node
+        /// with the HighestPriority. 
+        /// </summary>
+        /// <returns>Highest Priorty Item Name</returns>
+        /// <exception cref="QueueUnderflowException"></exception>
         public T Head()
         {
             if (IsEmpty())
@@ -47,7 +70,7 @@ namespace PriorityQueue
         /// UnsortedLinkedList method to create a newNode object with a generic item argument and integer priority.
         /// Traverse the LinkedList until the end Node. Set the end Node Next pointer to this newNode. 
         /// This will add the newNode to the end of the LinkedList. This will maintain the LIFO order of the LinkedList
-        /// while also being unsorted.
+        /// while also being Unsorted.
         /// </summary>
         /// <param name="item">Generic item type</param>
         /// <param name="priority">Priority of item</param>
