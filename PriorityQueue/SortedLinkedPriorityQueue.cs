@@ -35,8 +35,14 @@ namespace PriorityQueue
         }
 
 
+        /// <summary>
+        /// Method to return True if the head does not exist, meaning, if there is No Nodes created.
+        /// Otherwise, return False. 
+        /// </summary>
+        /// <returns>True if the _head does NOT contain a Node</returns>
         public bool IsEmpty()
         {
+            return _head == null;
         }
 
 
