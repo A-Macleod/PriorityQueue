@@ -33,19 +33,30 @@ namespace PriorityQueue
 
         public void Add(T item, int priority)
         {
-            // https://runestone.academy/ns/books/published/cppds/LinearLinked/ImplementinganOrderedList.html
 
             Node<T> newNode = new Node<T>(item, priority);
 
-            if (_head == null)
+            if (_head == null || newNode.Priority > _head.Priority)
             {
+                newNode.Next = _head;
                 _head = newNode;
             }
             else
             {
                 Node<T> currentNode = _head;
-                Node<T> previous = null;
-                Node<T> previousNode = null;
+
+                while (currentNode.Next != null && currentNode.Next.Priority >= newNode.Priority)
+                {
+                    currentNode = currentNode.Next;
+                }
+
+                newNode.Next = currentNode.Next;
+                currentNode.Next = newNode;
+
+            }
+
+
+
 
                 // If newNode Priority is greater than the _head, insert newNode at the _head
                 //if (newNode.Priority > currentNode.Priority)
@@ -54,45 +65,26 @@ namespace PriorityQueue
                 //    _head = newNode;
                 //}
 
-                if ( _head == null)
-                {
-                    newNode.Next = _head;
-                    _head = newNode;
-                }
-                else
-                {
-                    // Loop through each Node in the SortedLinkedList
-                    while (currentNode != null)
-                    {
 
-                        // If the current looped node is greater than the newNode Prio
-                        if (currentNode.Priority > newNode.Priority)
-                        {
-                            newNode.Next = currentNode; // set the next pointer to this current looped node
-                            previousNode = previous;
-                            return;                     // break the loop
-                        }
-                        else
-                        {
-                            previous = currentNode;         // record this node as the previous node
-                            currentNode = currentNode.Next; // Move to next Node
-                        }
-                    }
+                // Loop through each Node in the SortedLinkedList
+                //while (currentNode != null)
+                //{
 
-                    // keep moving through the linkedList until we find the Node in the list that has a higher Priority
-                    //while (currentNode.Next != null && newNode.Priority > currentNode.Priority)
-                    //{
+                //    // If the current looped node is greater than the newNode Prio
+                //    if (currentNode.Priority > newNode.Priority)
+                //    {
+                //        newNode.Next = currentNode; // set the next pointer to this current looped node
+                //        previousNode = previous;
+                //        return;                     // break the loop
+                //    }
+                //    else
+                //    {
+                //        previous = currentNode;         // record this node as the previous node
+                //        currentNode = currentNode.Next; // Move to next Node
+                //    }
+                //}   
 
-                    //    newNode.Next = currentNode;
-
-
-
-                    //    currentNode = currentNode.Next;
-                    //}
-
-                }
-
-            }
+            
 
         }
 
