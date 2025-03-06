@@ -2,7 +2,6 @@
 
 namespace PriorityQueue
 {
-
     /// <summary>
     /// Class to represent a sorted, array based, priority queue.
     /// Inheriting members from the PriorityQueue Interface.
