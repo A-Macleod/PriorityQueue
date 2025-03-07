@@ -10,9 +10,6 @@ namespace PriorityQueue
     public class SortedArrayPriorityQueue<T> : PriorityQueue<T>
     {
 
-        /// <summary>
-        /// Private fields for sorted array priority queue
-        /// </summary>
         private readonly PriorityItem<T>[] storage;
         private readonly int capacity;
         private int tailIndex;

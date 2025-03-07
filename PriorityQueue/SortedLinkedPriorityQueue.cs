@@ -8,12 +8,23 @@ using System.Threading.Tasks;
 
 namespace PriorityQueue
 {
+    /// <summary>
+    /// Class to represent a sorted, linked list, priority queue. The Nodes are linked by order of priority, the 
+    /// head node, the first node, has the highest priority in the queue [HEAD 100]-[90]-[80]. The queue maintains
+    /// the First In First Out datastructure. Traversing the LinkedList, by comparing neighbours priorities, is needed
+    /// to find the correct position for the enqueue operation. However dequeue or peek operations are straightforward
+    /// as they only access the head of the LinkedList 
+    /// </summary>
+    /// <typeparam name="T">Generic data type</typeparam>
     public class SortedLinkedPriorityQueue<T> : PriorityQueue<T> 
     {
 
         private Node<T> _head;
 
 
+        /// <summary>
+        /// Constructor for sorted linked list priority queue. Initializes the queue with the _head as null
+        /// </summary>
         public SortedLinkedPriorityQueue()
         {
             _head = null;
@@ -82,6 +93,7 @@ namespace PriorityQueue
 
         /// <summary>
         /// SortedLinkedList method to Remove the Node at the head of the queue that has the Highest Priority.
+        /// If the queue is empty throw an exception error stating that the queue is empty
         /// </summary>
         /// <exception cref="QueueUnderflowException"></exception>
         public void Remove()
@@ -128,11 +140,11 @@ namespace PriorityQueue
                 {
                     result += ", ";
                 }
-                result += $"({currentNode.Item},{currentNode.Priority})";   // Add on the Item and Priority of the Node to the result variable
+                result += $"({currentNode.Item}, {currentNode.Priority})" ; // Add on the Item and Priority of the Node to the result variable
                 currentNode = currentNode.Next;                             // Move to the Next Node
             }
-            result += "]";                  // Add a square bracket to the end
-            return result;                  // Return the concatenated result
+            result += "]";                  
+            return result;                  
         }
     }
 }

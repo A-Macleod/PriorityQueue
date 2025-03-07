@@ -21,14 +21,11 @@ namespace PriorityQueue
     public class UnsortedLinkedPriorityQueue<T> : PriorityQueue<T> 
     {
 
-        /// <summary>
-        /// Private field for UnsortedLinkedPriorityQueue
-        /// </summary>
         private Node<T> _head;
 
 
         /// <summary>
-        /// Constructor for unsorted linked priority queue. Initializes the queue with the _head Node as null 
+        /// Constructor for unsorted linked priority queue. Initializes the queue with the _head as null 
         /// </summary>
         public UnsortedLinkedPriorityQueue()
         {
@@ -172,7 +169,7 @@ namespace PriorityQueue
             //            if (currentNode.Priority > highestPriorityNode.Priority)    // If the CurrentNode Priority is greater than the record of the highestPriorityNode
             //            {
             //                highestPriorityNode = currentNode;                      // Highest Priority Node is this currentNode, since the currentNode has the higher Priority value   
-            //                previousNode = previous;                                // The previousNode is the previous value
+            //                previousNode = previous;                                // Update the Previous Node, which will be the previous from the outer loop
             //            }
             //            previous = currentNode;                                     // Previous is the currentNode
             //            currentNode = currentNode.Next;                             // Move to the next Node
@@ -229,11 +226,11 @@ namespace PriorityQueue
                 {
                     result += ", ";
                 }
-                result += $"({currentNode.Item},{currentNode.Priority})";   // Add on the Item and Priority of the Node to the result variable
-                currentNode = currentNode.Next;                             // Move to the Next Node
+                result += $"({currentNode.Item}" + ", " + $"{currentNode.Priority})";   
+                currentNode = currentNode.Next;                             
             }
-            result += "]";                  // Add a square bracket to the end
-            return result;                  // Return the concatenated result
+            result += "]";                  
+            return result;                  
         }
     }
 }

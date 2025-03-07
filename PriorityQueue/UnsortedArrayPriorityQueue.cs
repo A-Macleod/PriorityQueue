@@ -14,9 +14,6 @@ namespace PriorityQueue
     class UnsortedArrayPriorityQueue<T> : PriorityQueue<T>
     {
 
-        /// <summary>
-        /// Private fields for unsorted array priority queue
-        /// </summary>
         private readonly PriorityItem<T>[] _storage;
         private readonly int _capacity;
         private int _tailIndex;
