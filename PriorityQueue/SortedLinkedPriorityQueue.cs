@@ -80,8 +80,17 @@ namespace PriorityQueue
         }
 
 
+        /// <summary>
+        /// SortedLinkedList method to Remove the Node at the head of the queue that has the Highest Priority.
+        /// </summary>
+        /// <exception cref="QueueUnderflowException"></exception>
         public void Remove()
         {
+            if (IsEmpty())
+            {
+                throw new QueueUnderflowException();
+            }
+            _head = _head.Next;
         }
 
 
