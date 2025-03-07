@@ -56,7 +56,7 @@ namespace PriorityQueue
             // Traverse the LinkedList to find the Node with the Highest Priority, starting at the Head Node
             while (currentNode != null)
             {
-                if (currentNode.Priority > highestPriorityNode.Priority)    // Compare values
+                if (currentNode.Priority > highestPriorityNode.Priority)    
                 {
                     highestPriorityNode = currentNode;                      // Update the new Highest Priority Node 
                 }
@@ -76,9 +76,9 @@ namespace PriorityQueue
         /// <param name="priority">Priority of item</param>
         public void Add(T item, int priority)
         {
-            Node<T> newNode = new Node<T>(item, priority);  // Create new node
+            Node<T> newNode = new Node<T>(item, priority);  
 
-            if (_head == null)                              // If the head is null, the head is the newNode
+            if (_head == null)                              
             {
                 _head = newNode;
             }
@@ -86,7 +86,7 @@ namespace PriorityQueue
             {
                 // [(1,80) (2, 90) (3, 100)] FIFO
                 Node<T> currentNode = _head;
-                while (currentNode.Next != null)    // While the Current Node does not have a NULL Next pointer, the last Node will
+                while (currentNode.Next != null)    
                 {
                     currentNode = currentNode.Next; // Traverse the LinkedList
                 }
@@ -177,12 +177,12 @@ namespace PriorityQueue
             //            previous = currentNode;                                     // Previous is the currentNode
             //            currentNode = currentNode.Next;                             // Move to the next Node
             //        }
-
-            //    /* Removing the Highest Priority Node.
-            //    /  This jumps the link over the HighestPriorityNode because we change the Pointers,
-            //    /  we link the PreviousNode to the one AFTER the HighestPriority using the
-            //    /  HighestPriorityNodes Next Pointer.   [Previous] [HighestPrio] [HighestPrioNext]
-            //    /                                           |____________________________|      
+            //    /*
+            //    * Removing the Highest Priority Node.
+            //    *  This jumps the link over the HighestPriorityNode because we change the Pointers,
+            //    *  we link the PreviousNode to the one AFTER the HighestPriority using the
+            //    *  HighestPriorityNodes Next Pointer.   [Previous] [HighestPrio] [HighestPrioNext]
+            //    *                                           |____________________________|      
             //    */
             //    if (highestPriorityNode == _head)   // If the Node to be removed is the head
             //    {

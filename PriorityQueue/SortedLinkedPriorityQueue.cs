@@ -20,17 +20,30 @@ namespace PriorityQueue
         }
 
 
+        /// <summary>
+        /// SortedLinkedList method to return the name of the HighestPriority Item. The Highest Priority
+        /// Item should always be at the _Head of the queue as we sort the Nodes in their correct space
+        /// during the Enqueue operation.
+        /// </summary>
+        /// <returns>Highest Priorty Item Name</returns>
+        /// <exception cref="QueueUnderflowException"></exception>
         public T Head()
         {
             if (IsEmpty())
             {
                 throw new QueueUnderflowException();
             }
-
             return _head.Item;
         }
 
 
+        /// <summary>
+        /// SortedLinkedList method to add an Item with its Priority into the correct position in the LinkedList. If the newNodes Priority is greater than
+        /// the _heads Priority, make the newNode the _head. If not, search through the Nodes to find the correct position for the newNode and update the 
+        /// Next pointers
+        /// </summary>
+        /// <param name="item">Generic, Name of Item</param>
+        /// <param name="priority">Integer, Priority of Item</param>
         public void Add(T item, int priority)
         {
 
@@ -43,8 +56,19 @@ namespace PriorityQueue
             }
             else
             {
-                Node<T> currentNode = _head;
 
+                /* 
+                * Starting at the _head Node and while there is a next Node and while the next Nodes Priority is greater or equal to the newNode Priority, traverse the LinkedList. 
+                * When we find the Node in the LinkedList that its Next Priority is LESS than the newNode, stop traversing, update currentNode to this found node.
+                *      [HEAD 70]-[50]-[45]-[30]   [NEWNODE 40] 
+                *                      ^
+                * Point the newNode to the currentNodes Next pointer.  [NEWNODE]-[30]
+                * Point the currentNodes Next pointer to the newNode.  [45]-[NEWNODE 40]
+                * We have now inserted the newNode in the correct positon while maintaining the FIFO Priority Queue
+                *      [HEAD 70]-[50]-[45]-[40]-[30]
+                */
+
+                Node<T> currentNode = _head;
                 while (currentNode.Next != null && currentNode.Next.Priority >= newNode.Priority)
                 {
                     currentNode = currentNode.Next;
@@ -52,40 +76,7 @@ namespace PriorityQueue
 
                 newNode.Next = currentNode.Next;
                 currentNode.Next = newNode;
-
             }
-
-
-
-
-                // If newNode Priority is greater than the _head, insert newNode at the _head
-                //if (newNode.Priority > currentNode.Priority)
-                //{
-                //    newNode.Next = _head;
-                //    _head = newNode;
-                //}
-
-
-                // Loop through each Node in the SortedLinkedList
-                //while (currentNode != null)
-                //{
-
-                //    // If the current looped node is greater than the newNode Prio
-                //    if (currentNode.Priority > newNode.Priority)
-                //    {
-                //        newNode.Next = currentNode; // set the next pointer to this current looped node
-                //        previousNode = previous;
-                //        return;                     // break the loop
-                //    }
-                //    else
-                //    {
-                //        previous = currentNode;         // record this node as the previous node
-                //        currentNode = currentNode.Next; // Move to next Node
-                //    }
-                //}   
-
-            
-
         }
 
 
