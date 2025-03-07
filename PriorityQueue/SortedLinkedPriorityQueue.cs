@@ -140,8 +140,8 @@ namespace PriorityQueue
                 {
                     result += ", ";
                 }
-                result += $"({currentNode.Item}, {currentNode.Priority})" ; // Add on the Item and Priority of the Node to the result variable
-                currentNode = currentNode.Next;                             // Move to the Next Node
+                result += $"({currentNode.Item}, {currentNode.Priority})" ; 
+                currentNode = currentNode.Next;                             
             }
             result += "]";                  
             return result;                  
