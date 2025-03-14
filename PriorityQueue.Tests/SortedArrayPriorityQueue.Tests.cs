@@ -16,7 +16,11 @@ namespace PriorityQueue.Tests
         }
 
 
-
+        [TearDown]
+        public void TearDown()
+        {
+            sortedArrayPriorityQueue = null;
+        }
 
 
     }
