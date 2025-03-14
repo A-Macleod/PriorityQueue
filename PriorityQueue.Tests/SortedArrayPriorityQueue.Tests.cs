@@ -8,12 +8,14 @@ namespace PriorityQueue.Tests
         private SortedArrayPriorityQueue<Person> sortedArrayPriorityQueue;
 
 
+
         [SetUp]
         public void Setup()
         {
             int size = 8;
             sortedArrayPriorityQueue = new SortedArrayPriorityQueue<Person>(size);
         }
+
 
 
         [TearDown]
@@ -23,16 +25,29 @@ namespace PriorityQueue.Tests
         }
 
 
+        
         [Test]
         public void IsEmpty_CheckTheQueueIsEmpty()
         {
-            // Arrange
+            // Assert
+            Assert.That(sortedArrayPriorityQueue.IsEmpty, Is.True);
+        }
 
+
+
+        [Test]
+        public void IsEmpty_CheckTheQueueIsNotEmpty()
+        {
             // Act
+            sortedArrayPriorityQueue.Add(new Person("one"), 90);
 
             // Assert
-            Assert.That(sortedArrayPriorityQueue.IsEmpty);
+            Assert.That(sortedArrayPriorityQueue.IsEmpty, Is.False);
         }
+
+
+
+
 
 
     }
