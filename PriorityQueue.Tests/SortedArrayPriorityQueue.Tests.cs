@@ -23,5 +23,17 @@ namespace PriorityQueue.Tests
         }
 
 
+        [Test]
+        public void IsEmpty_CheckTheQueueIsEmpty()
+        {
+            // Arrange
+
+            // Act
+
+            // Assert
+            Assert.That(sortedArrayPriorityQueue.IsEmpty);
+        }
+
+
     }
 }
