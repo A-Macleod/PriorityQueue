@@ -32,7 +32,7 @@ namespace PriorityQueue
         /// Method to return the head of the array, at index 0, the Item name.
         /// This is the item with Highest Priority.
         /// </summary>
-        /// <returns>Array index position 0, the person name</returns>
+        /// <returns>Element at position 0, the persons name</returns>
         /// <exception cref="QueueUnderflowException"></exception>
         public T Head()
         {
