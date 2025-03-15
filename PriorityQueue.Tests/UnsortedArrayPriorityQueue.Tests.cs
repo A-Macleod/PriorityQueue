@@ -339,6 +339,13 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Head_ThrowsExceptionErrorWhenQueueIsEmpty()
+        {
+            Assert.That(() => UnsortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
+        }
+
+
 
 
 
