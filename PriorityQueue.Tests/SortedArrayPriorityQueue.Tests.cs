@@ -70,6 +70,21 @@ namespace PriorityQueue.Tests
 
 
         [Test]
+        public void Add_AddingOneItemToQueue()
+        {
+            // Arrange
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+
+            // Act
+            var head = sortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("one", Is.EqualTo(head.Name));
+        }
+
+
+
+        [Test]
         public void Constructor_InitializesArrayWithCorrectSizeThrowsOverflowExceptionWhenExceeded()
         {
             // Act
