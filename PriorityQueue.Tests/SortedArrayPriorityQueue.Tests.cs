@@ -142,6 +142,24 @@ namespace PriorityQueue.Tests
 
 
         [Test]
+        public void Remove_RemovesHighestPriorityFromQueue()
+        {
+            // Arrange
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+            sortedArrayPriorityQueue.Add(new Person("two"), 20);
+            sortedArrayPriorityQueue.Add(new Person("three"), 30);
+
+            // Act
+            sortedArrayPriorityQueue.Remove();
+            var head = sortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("two", Is.EqualTo(head.Name));
+        }
+
+
+
+        [Test]
         public void Remove_DequeuesItemsFromQueueThrowsExceptionWhenRemovingFromEmptyQueue()
         {
             // Arrange
