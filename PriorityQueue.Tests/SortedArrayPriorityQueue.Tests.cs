@@ -112,10 +112,11 @@ namespace PriorityQueue.Tests
             sortedArrayPriorityQueue.Add(new Person(""), 10);
 
             // Act
-            var head = sortedArrayPriorityQueue.Head();
+            var result = sortedArrayPriorityQueue.Head();
 
             // Assert
-            Assert.That("one", Is.Not.EqualTo(head.Name));
+
+            Assert.That("[(, 10)]", Is.Not.EqualTo(result));
         }
 
 
