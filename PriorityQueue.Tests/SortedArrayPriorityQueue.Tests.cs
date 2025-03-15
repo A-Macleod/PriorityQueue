@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Xml.Linq;
 
 namespace PriorityQueue.Tests
 {
@@ -28,7 +29,7 @@ namespace PriorityQueue.Tests
 
 
         [Test]
-        public void IsEmpty_CheckTheQueueIsEmptyWhenNoItemsAreAdded()
+        public void IsEmpty_CheckTheQueueIsEmptyWhenQueueIsEmpty()
         {
             // Assert
             Assert.That(sortedArrayPriorityQueue.IsEmpty, Is.True);
@@ -41,6 +42,25 @@ namespace PriorityQueue.Tests
         {
             // Act
             sortedArrayPriorityQueue.Add(new Person("one"), 90);
+
+            // Assert
+            Assert.That(sortedArrayPriorityQueue.IsEmpty, Is.False);
+        }
+
+
+
+        [TestCase("one", 10)]
+        [TestCase("two", 20)]
+        [TestCase("three", 30)]
+        [TestCase("four", 40)]
+        [TestCase("five", 50)]
+        [TestCase("six", 60)]
+        [TestCase("seven", 70)]
+        [TestCase("eight", 80)]
+        public void IsEmpty_CheckTheQueueIsNotEmptyWhenQueueIsFull(string name, int priority)
+        {
+            // Act
+            sortedArrayPriorityQueue.Add(new Person(name), priority);
 
             // Assert
             Assert.That(sortedArrayPriorityQueue.IsEmpty, Is.False);
