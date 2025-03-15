@@ -402,7 +402,7 @@ namespace PriorityQueue.Tests
 
 
         [Test]
-        public void ToString_ChecksTheToStringMethodOutputsAllTheItemsInTheSortedArrayInCorrectPriorityOrder()
+        public void ToString_ChecksTheToStringMethodOutputsAllTheItemsInTheUnsortedArrayInCorrectOrder()
         {
             // Arrange
             UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
@@ -421,6 +421,17 @@ namespace PriorityQueue.Tests
             Assert.That("[(three, 30), (four, 40), (one, 10), (two, 20), (five, 50), (six, 60), (seven, 70), (eight, 80)]", Is.EqualTo(result));
         }
 
+
+
+        [Test]
+        public void ToString_ThrowsCorrectExceptionMessageWhenToStringIsCalledOnAnEmptyQueue()
+        {
+            // Act
+            var exception = Assert.Throws<QueueUnderflowException>(() => UnsortedArrayPriorityQueue.ToString());
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("No items to display"));
+        }
 
 
 
