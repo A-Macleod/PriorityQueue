@@ -393,6 +393,27 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsAllTheItemsInTheSortedArrayInCorrectPriorityOrder()
+        {
+            // Arrange
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+            sortedArrayPriorityQueue.Add(new Person("two"), 20);
+            sortedArrayPriorityQueue.Add(new Person("three"), 30);
+            sortedArrayPriorityQueue.Add(new Person("four"), 40);
+            sortedArrayPriorityQueue.Add(new Person("five"), 50);
+            sortedArrayPriorityQueue.Add(new Person("six"), 60);
+            sortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            sortedArrayPriorityQueue.Add(new Person("eight"), 80);
+
+            // Act
+            var result = sortedArrayPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(eight, 80), (seven, 70), (six, 60), (five, 50), (four, 40), (three, 30), (two, 20), (one, 10)]", Is.EqualTo(result));
+        }
+
+
 
 
     }
