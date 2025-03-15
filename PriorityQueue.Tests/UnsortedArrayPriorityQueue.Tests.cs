@@ -435,6 +435,14 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void ToString_ThrowsExceptionWhenThetoStringMethodIsCalledOnAnEmptyQueue()
+        {
+            // Assert
+            Assert.That(() => UnsortedArrayPriorityQueue.ToString(), Throws.TypeOf<QueueUnderflowException>());
+        }
+
+
 
 
 
