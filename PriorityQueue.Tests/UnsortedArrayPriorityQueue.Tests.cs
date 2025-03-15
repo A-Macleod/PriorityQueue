@@ -87,6 +87,28 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Add_AddingRemovingThenAddingWhileTrackingTheHighestPriority()
+        {
+            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            UnsortedArrayPriorityQueue.Add(new Person("four"), 40);
+            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
+
+            UnsortedArrayPriorityQueue.Remove();
+            UnsortedArrayPriorityQueue.Remove();
+            UnsortedArrayPriorityQueue.Remove();
+
+            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
+
+            var head = UnsortedArrayPriorityQueue.Head();
+
+            Assert.That("five", Is.EqualTo(head.Name));
+        }
+
+
+
+
 
 
 
