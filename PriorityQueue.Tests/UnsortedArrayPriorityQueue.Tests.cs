@@ -252,8 +252,9 @@ namespace PriorityQueue.Tests
             int size = 8;
             UnsortedArrayPriorityQueue = new UnsortedArrayPriorityQueue<Person>(size);
             UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
             UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
+
 
             // Act
             UnsortedArrayPriorityQueue.Remove();
@@ -264,6 +265,21 @@ namespace PriorityQueue.Tests
             Assert.That(() => UnsortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
         }
 
+
+
+        [Test]
+        public void Head_IsTheHighestPriorityItem()
+        {
+            // Act
+            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
+
+            var head = UnsortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("three", Is.EqualTo(head.Name));
+        }
 
 
 
