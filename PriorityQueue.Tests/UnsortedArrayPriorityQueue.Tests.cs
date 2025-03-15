@@ -72,6 +72,20 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Add_AddingOneItemToQueue()
+        {
+            // Arrange
+            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
+
+            // Act
+            var head = UnsortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("one", Is.EqualTo(head.Name));
+        }
+
+
 
 
 
