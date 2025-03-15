@@ -51,7 +51,6 @@ namespace PriorityQueue.Tests
 
 
         [Test]
-
         public void IsEmpty_CheckTheQueueIsNotEmptyWhenQueueIsFull()
         {
             // Act
@@ -103,6 +102,7 @@ namespace PriorityQueue.Tests
 
             Assert.That("five", Is.EqualTo(head.Name));
         }
+
 
 
         [Test]
