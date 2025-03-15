@@ -245,6 +245,26 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Remove_DequeuesItemsFromQueueThrowsExceptionWhenRemovingFromEmptyQueue()
+        {
+            // Arrange
+            int size = 8;
+            UnsortedArrayPriorityQueue = new UnsortedArrayPriorityQueue<Person>(size);
+            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
+
+            // Act
+            UnsortedArrayPriorityQueue.Remove();
+            UnsortedArrayPriorityQueue.Remove();
+            UnsortedArrayPriorityQueue.Remove();
+
+            // Assert
+            Assert.That(() => UnsortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
+        }
+
+
 
 
 
