@@ -10,10 +10,17 @@ namespace PriorityQueue.Tests
 {
     public class UnsortedArrayPriorityQueueTests
     {
+
         private UnsortedArrayPriorityQueue<Person> UnsortedArrayPriorityQueue;
 
 
 
+        [SetUp]
+        public void Setup()
+        {
+            int size = 8;
+            UnsortedArrayPriorityQueue = new UnsortedArrayPriorityQueue<Person>(size);
+        }
 
 
 
