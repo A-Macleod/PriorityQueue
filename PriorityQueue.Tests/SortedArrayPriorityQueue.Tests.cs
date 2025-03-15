@@ -107,9 +107,8 @@ namespace PriorityQueue.Tests
 
 
         [Test]
-        public void Add_AddingItemsToQueueUntilTheQueueIsFullAndExceptionMessageIsThrown()
+        public void Add_ThrowsTheCorrectExceptionErrorMessageWhenAddingNewItemAndTheQueueIsFull()
         {
-
             // Arrange
             sortedArrayPriorityQueue.Add(new Person("one"), 10);
             sortedArrayPriorityQueue.Add(new Person("two"), 20);
@@ -126,6 +125,26 @@ namespace PriorityQueue.Tests
             // Assert
             Assert.That(exception.Message, Is.EqualTo("Queue is full"));
         }
+
+
+        [Test]
+        public void Add_AddingItemsToQueueUntilTheQueueIsFullAndExceptionMessageIsThrown()
+        {
+
+            // Act
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+            sortedArrayPriorityQueue.Add(new Person("two"), 20);
+            sortedArrayPriorityQueue.Add(new Person("three"), 30);
+            sortedArrayPriorityQueue.Add(new Person("four"), 40);
+            sortedArrayPriorityQueue.Add(new Person("five"), 50);
+            sortedArrayPriorityQueue.Add(new Person("six"), 60);
+            sortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            sortedArrayPriorityQueue.Add(new Person("eight"), 80);
+
+            // Assert
+            Assert.That(() => sortedArrayPriorityQueue.Add(new Person("nine"), 90), Throws.TypeOf<QueueOverflowException>());
+        }
+
 
 
 
