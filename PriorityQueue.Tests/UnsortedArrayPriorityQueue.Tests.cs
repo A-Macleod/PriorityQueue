@@ -186,6 +186,23 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Remove_RemovesHighestPriorityFromQueue()
+        {
+            // Arrange
+            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
+
+            // Act
+            UnsortedArrayPriorityQueue.Remove();
+            var head = UnsortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("two", Is.EqualTo(head.Name));
+        }
+
+
 
 
 
