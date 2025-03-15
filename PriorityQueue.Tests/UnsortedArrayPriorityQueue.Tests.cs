@@ -347,6 +347,21 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsInCorrectFormat()
+        {
+            // Arrange
+            UnsortedArrayPriorityQueue.Add(new Person("one"), 90);
+
+            // Act
+            var result = UnsortedArrayPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(one, 90)]", Is.EqualTo(result));
+        }
+
+
+
 
 
 
