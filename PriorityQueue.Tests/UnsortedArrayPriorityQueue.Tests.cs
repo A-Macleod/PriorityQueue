@@ -24,6 +24,14 @@ namespace PriorityQueue.Tests
 
 
 
+        [TearDown]
+        public void TearDown()
+        {
+            UnsortedArrayPriorityQueue = null;
+        }
+
+
+
 
 
 
