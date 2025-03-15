@@ -362,6 +362,22 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsInCorrectFormatWithMultipleAddsAndIsNotSorted()
+        {
+            // Arrange
+            UnsortedArrayPriorityQueue.Add(new Person("one"), 50);
+            UnsortedArrayPriorityQueue.Add(new Person("three"), 65);
+            UnsortedArrayPriorityQueue.Add(new Person("five"), 100);
+
+            // Act
+            var result = UnsortedArrayPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(one, 50), (three, 65), (five, 100)]", Is.EqualTo(result));
+        }
+
+
 
 
 
