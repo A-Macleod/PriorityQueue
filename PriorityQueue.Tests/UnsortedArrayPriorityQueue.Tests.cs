@@ -326,6 +326,22 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Head_ThrowsCorrectExceptionErrorWhenQueueIsEmpty()
+        {
+            // Act
+            var exception = Assert.Throws<QueueUnderflowException>(() => UnsortedArrayPriorityQueue.Remove());
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("Queue is empty"));
+
+        }
+
+
+
+
+
+
 
 
 
