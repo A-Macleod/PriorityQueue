@@ -85,9 +85,22 @@ namespace PriorityQueue.Tests
 
 
         [Test]
-        public void Add_AddRemoveAdd()
+        public void Add_AddingRemovingThenAddingWhileMaintainingTheOrderOfTheHighestPriority()
         {
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+            sortedArrayPriorityQueue.Add(new Person("two"), 20);
+            sortedArrayPriorityQueue.Add(new Person("three"), 30);
+            sortedArrayPriorityQueue.Add(new Person("four"), 40);
 
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+
+            sortedArrayPriorityQueue.Add(new Person("five"), 50);
+
+            var head = sortedArrayPriorityQueue.Head();
+
+            Assert.That("five", Is.EqualTo(head.Name));
         }
 
 
