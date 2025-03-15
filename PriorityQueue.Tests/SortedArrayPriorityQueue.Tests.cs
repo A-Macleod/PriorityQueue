@@ -100,6 +100,41 @@ namespace PriorityQueue.Tests
 
 
         [Test]
+        public void Add_AddingItemWithNullNameThrowsExceptionErrorMessage()
+        {
+            // Act
+            var exception = Assert.Throws<QueueOverflowException>(() => sortedArrayPriorityQueue.Add(new Person(""), 10));
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("Please include name for new priority queue item"));
+        }
+
+
+
+        [Test]
+        public void Add_AddingItemsToQueueUntilTheQueueIsFullAndExceptionMessageIsThrown()
+        {
+        
+            // Arrange
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+            sortedArrayPriorityQueue.Add(new Person("two"), 20);
+            sortedArrayPriorityQueue.Add(new Person("three"), 30);
+            sortedArrayPriorityQueue.Add(new Person("four"), 40);
+            sortedArrayPriorityQueue.Add(new Person("five"), 50);
+            sortedArrayPriorityQueue.Add(new Person("six"), 60);
+            sortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            sortedArrayPriorityQueue.Add(new Person("eight"), 80);
+
+            // Act
+            var exception = Assert.Throws<QueueOverflowException>(() => sortedArrayPriorityQueue.Add(new Person("nine"), 90));
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("Queue is full"));
+        }
+
+
+
+        [Test]
         public void Constructor_InitializesArrayWithCorrectSizeThrowsOverflowExceptionWhenExceeded()
         {
             // Act
@@ -111,8 +146,8 @@ namespace PriorityQueue.Tests
             sortedArrayPriorityQueue.Add(new Person("six"), 60);
             sortedArrayPriorityQueue.Add(new Person("seven"), 70);
             sortedArrayPriorityQueue.Add(new Person("eight"), 80);
-
-            // Assert
+            
+            // Act & Assert
             Assert.That(() => sortedArrayPriorityQueue.Add(new Person("nine"), 90), Throws.TypeOf<QueueOverflowException>());
         }
 
@@ -142,17 +177,35 @@ namespace PriorityQueue.Tests
         [Test]
         public void Head_IsTheHighestPriorityItem()
         {
-            // Arrange
+            // Act
             sortedArrayPriorityQueue.Add(new Person("one"), 10);
             sortedArrayPriorityQueue.Add(new Person("three"), 30);
 
-            // Act
             var head = sortedArrayPriorityQueue.Head();
 
             // Assert
             Assert.That("three", Is.EqualTo(head.Name));
         }
 
+
+
+        [Test]
+        public void Head_IsTheHighestPriorityAfterMultipleDeletes()
+        {
+            // Act
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+            sortedArrayPriorityQueue.Add(new Person("three"), 30);
+            sortedArrayPriorityQueue.Add(new Person("five"), 50);
+            sortedArrayPriorityQueue.Add(new Person("seven"), 70);
+
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+
+            var head = sortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("three", Is.EqualTo(head.Name));
+        }
 
 
 
