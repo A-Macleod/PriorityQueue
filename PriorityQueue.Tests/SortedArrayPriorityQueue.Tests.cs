@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Internal;
 using System;
 using System.Xml.Linq;
 
@@ -426,6 +427,13 @@ namespace PriorityQueue.Tests
         }
 
 
+
+        [Test]
+        public void ToString_ThrowsExceptionWhenThetoStringMethodIsCalledOnAnEmptyQueue()
+        {
+            // Assert
+            Assert.That(() => sortedArrayPriorityQueue.ToString(), Throws.TypeOf<QueueUnderflowException>());
+        }
 
     }
 }
