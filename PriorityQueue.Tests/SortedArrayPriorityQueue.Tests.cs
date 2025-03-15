@@ -48,43 +48,8 @@ namespace PriorityQueue.Tests
 
 
 
-        [Test]
-        public void Add_AddPersonToQueue()
-        {
-            sortedArrayPriorityQueue.Add(new Person("one"), 90);
-
-            Assert.That(sortedArrayPriorityQueue.Head()., Is.)
-        }
-
-
-
-        [TestCase("one", 10, false)]
-        [TestCase("two", 20, false)]
-        [TestCase("three", 30, false)]
-        [TestCase("four", 40, false)]
-        [TestCase("five", 50, false)]
-        [TestCase("six", 60, false)]
-        [TestCase("seven", 70, false)]
-        [TestCase("eight", 80, true)]
-
-        public void Add_AddsAnItemToTheQueue_ReturnsTrueIfNotEmpty(string name, int priority, bool expected)
-        {
-
-            // Arrange
-
-
-            // Act
-            sortedArrayPriorityQueue.Add(new Person(name), priority);
-
-            // Assert
-            Assert.That(sortedArrayPriorityQueue.Head(), Is.EqualTo(expected));
-            
-        }
-
-
-
         [TestCase()]
-        public void Constructor_InitializesArrayWithCorrectSize_ThrowsOverflowExceptionWhenExceeded()
+        public void Constructor_InitializesArrayWithCorrectSizeThrowsOverflowExceptionWhenExceeded()
         {
             // Arrange
             sortedArrayPriorityQueue.Add(new Person("one"), 10);
@@ -103,7 +68,7 @@ namespace PriorityQueue.Tests
 
 
         [Test]
-        public void Remove_ThrowsExceptionWhenQueueIsEmpty()
+        public void Remove_DequeuesItemsFromQueueThrowsExceptionWhenRemovingFromEmptyQueue()
         {
             // Arrange
             int size = 8;
@@ -120,6 +85,7 @@ namespace PriorityQueue.Tests
             // Act & Assert
             Assert.That(() => sortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
         }
+
 
 
 
