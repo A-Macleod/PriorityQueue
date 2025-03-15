@@ -88,6 +88,23 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Head_IsTheHighestPriorityItem()
+        {
+            // Arrange
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+            sortedArrayPriorityQueue.Add(new Person("three"), 30);
+
+            // Act
+            var head = sortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("three", Is.EqualTo(head.Name));
+        }
+
+
+
+
 
 
 
