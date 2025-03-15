@@ -85,6 +85,13 @@ namespace PriorityQueue.Tests
 
 
         [Test]
+        public void Add_AddRemoveAdd()
+        {
+
+        }
+
+
+        [Test]
         public void Add_AddingItemWithNullNameDoesNotGetAddedToQueue()
         {
             // Arrange
@@ -160,6 +167,47 @@ namespace PriorityQueue.Tests
 
 
         [Test]
+        public void Remove_AddsAndFillsTheQueueThenRemovesAllTheItemsFromTheQueueThenThrowsExceptionErrorWhenEmpty()
+        {
+            // Arrange
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+            sortedArrayPriorityQueue.Add(new Person("two"), 20);
+            sortedArrayPriorityQueue.Add(new Person("three"), 30);
+            sortedArrayPriorityQueue.Add(new Person("four"), 40);
+            sortedArrayPriorityQueue.Add(new Person("five"), 50);
+            sortedArrayPriorityQueue.Add(new Person("six"), 60);
+            sortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            sortedArrayPriorityQueue.Add(new Person("eight"), 80);
+
+            // Act
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+
+            // Assert
+            Assert.That(() => sortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
+        }
+
+
+
+        [Test]
+        public void Remove_ThrowsTheCorrectExceptionErrorMessage()
+        {
+            // Act
+            var exception = Assert.Throws<QueueUnderflowException>(() => sortedArrayPriorityQueue.Remove());
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("Queue is empty"));
+        }
+
+
+
+        [Test]
         public void Remove_DequeuesItemsFromQueueThrowsExceptionWhenRemovingFromEmptyQueue()
         {
             // Arrange
@@ -174,7 +222,7 @@ namespace PriorityQueue.Tests
             sortedArrayPriorityQueue.Remove();
             sortedArrayPriorityQueue.Remove();
 
-            // Act & Assert
+            // Assert
             Assert.That(() => sortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
         }
 
