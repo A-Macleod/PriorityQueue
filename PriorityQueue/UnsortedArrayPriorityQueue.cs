@@ -11,7 +11,7 @@ namespace PriorityQueue
     /// Inheriting members from the PriorityQueue Interface.
     /// </summary>
     /// <typeparam name="T">Generic type</typeparam>
-    class UnsortedArrayPriorityQueue<T> : PriorityQueue<T>
+    public class UnsortedArrayPriorityQueue<T> : PriorityQueue<T>
     {
 
         private readonly PriorityItem<T>[] _storage;
