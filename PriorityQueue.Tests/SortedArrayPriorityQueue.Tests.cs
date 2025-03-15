@@ -85,6 +85,21 @@ namespace PriorityQueue.Tests
 
 
         [Test]
+        public void Add_AddingItemWithNullNameDoesNotGetAddedToQueue()
+        {
+            // Arrange
+            sortedArrayPriorityQueue.Add(new Person(""), 10);
+
+            // Act
+            var head = sortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("one", Is.Not.EqualTo(head.Name));
+        }
+
+
+
+        [Test]
         public void Constructor_InitializesArrayWithCorrectSizeThrowsOverflowExceptionWhenExceeded()
         {
             // Act
