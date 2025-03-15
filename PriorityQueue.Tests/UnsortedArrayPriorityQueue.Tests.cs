@@ -303,6 +303,28 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Head_IsTheHighestPriorityAfterMultipleDeletesAndThenMoreAdds()
+        {
+            // Act
+            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+
+            UnsortedArrayPriorityQueue.Remove();
+            UnsortedArrayPriorityQueue.Remove();
+
+            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            UnsortedArrayPriorityQueue.Add(new Person("eight"), 80);
+
+            var head = UnsortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("eight", Is.EqualTo(head.Name));
+        }
+
+
 
 
 
