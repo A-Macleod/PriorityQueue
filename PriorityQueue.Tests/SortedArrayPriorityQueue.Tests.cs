@@ -415,6 +415,17 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void ToString_ThrowsCorrectExceptionMessageWhenToStringIsCalledOnAnEmptyQueue()
+        {
+            // Act
+            var exception = Assert.Throws<QueueUnderflowException>(() => sortedArrayPriorityQueue.ToString());
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("No items to display"));
+        }
+
+
 
     }
 }
