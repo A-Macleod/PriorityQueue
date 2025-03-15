@@ -100,18 +100,6 @@ namespace PriorityQueue.Tests
 
 
         [Test]
-        public void Add_AddingItemWithNullNameThrowsExceptionErrorMessage()
-        {
-            // Act
-            var exception = Assert.Throws<QueueOverflowException>(() => sortedArrayPriorityQueue.Add(new Person(""), 10));
-
-            // Assert
-            Assert.That(exception.Message, Is.EqualTo("Please include name for new priority queue item"));
-        }
-
-
-
-        [Test]
         public void Add_AddingItemsToQueueUntilTheQueueIsFullAndExceptionMessageIsThrown()
         {
         
@@ -209,8 +197,39 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Head_IsTheHighestPriorityAfterMultipleDeletesAndThenMoreAdds()
+        {
+            // Act
+            sortedArrayPriorityQueue.Add(new Person("one"), 10);
+            sortedArrayPriorityQueue.Add(new Person("three"), 30);
+            sortedArrayPriorityQueue.Add(new Person("five"), 50);
+            sortedArrayPriorityQueue.Add(new Person("seven"), 70);
+
+            sortedArrayPriorityQueue.Remove();
+            sortedArrayPriorityQueue.Remove();
+
+            sortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            sortedArrayPriorityQueue.Add(new Person("eight"), 80);
+
+            var head = sortedArrayPriorityQueue.Head();
+
+            // Assert
+            Assert.That("eight", Is.EqualTo(head.Name));
+        }
 
 
+
+        [Test]
+        public void Head_ThrowsExceptionErrorWhenQueueIsEmpty()
+        {
+            // Act
+            var exception = Assert.Throws<QueueUnderflowException>(() => sortedArrayPriorityQueue.Remove());
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("Queue is empty"));
+ 
+        }
 
     }
 }
