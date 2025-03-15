@@ -140,6 +140,7 @@ namespace PriorityQueue.Tests
         }
 
 
+
         [Test]
         public void Add_AddingItemsToQueueUntilTheQueueIsFullAndExceptionMessageIsThrown()
         {
@@ -157,7 +158,6 @@ namespace PriorityQueue.Tests
             // Assert
             Assert.That(() => sortedArrayPriorityQueue.Add(new Person("nine"), 90), Throws.TypeOf<QueueOverflowException>());
         }
-
 
 
 
@@ -336,6 +336,25 @@ namespace PriorityQueue.Tests
         {
             Assert.That(() => sortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
         }
+
+
+
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsInCorrectFormat()
+        {
+            // Arrange
+            sortedArrayPriorityQueue.Add(new Person("one"), 90);
+
+            // Act
+            var result = sortedArrayPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(one, 90)]", Is.EqualTo(result));
+        }
+
+
+
+
 
 
     }
