@@ -283,6 +283,102 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsInCorrectFormat()
+        {
+            // Arrange
+            unsortedLinkedPriorityQueue.Add(new Person("one"), 90);
+
+            // Act
+            var result = unsortedLinkedPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(one, 90)]", Is.EqualTo(result));
+        }
+
+
+
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsInCorrectFormatWithMultipleAddsAndIsNotSorted()
+        {
+            // Arrange
+            unsortedLinkedPriorityQueue.Add(new Person("one"), 50);
+            unsortedLinkedPriorityQueue.Add(new Person("three"), 65);
+            unsortedLinkedPriorityQueue.Add(new Person("five"), 100);
+
+            // Act
+            var result = unsortedLinkedPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(one, 50), (three, 65), (five, 100)]", Is.EqualTo(result));
+        }
+
+
+
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsInCorrectFormatWithMultipleAddsAndMultipleDeletesAndIsNotSorted()
+        {
+            // Arrange
+            unsortedLinkedPriorityQueue.Add(new Person("two"), 40);
+            unsortedLinkedPriorityQueue.Add(new Person("three"), 65);
+            unsortedLinkedPriorityQueue.Add(new Person("five"), 100);
+
+            unsortedLinkedPriorityQueue.Remove();
+            unsortedLinkedPriorityQueue.Remove();
+
+            unsortedLinkedPriorityQueue.Add(new Person("one"), 50);
+
+            // Act
+            var result = unsortedLinkedPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(two, 40), (one, 50)]", Is.EqualTo(result));
+        }
+
+
+
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsAllTheItemsInTheUnsortedListInCorrectOrder()
+        {
+            // Arrange
+            unsortedLinkedPriorityQueue.Add(new Person("three"), 30);
+            unsortedLinkedPriorityQueue.Add(new Person("four"), 40);
+            unsortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            unsortedLinkedPriorityQueue.Add(new Person("two"), 20);
+            unsortedLinkedPriorityQueue.Add(new Person("five"), 50);
+            unsortedLinkedPriorityQueue.Add(new Person("six"), 60);
+            unsortedLinkedPriorityQueue.Add(new Person("seven"), 70);
+            unsortedLinkedPriorityQueue.Add(new Person("eight"), 80);
+
+            // Act
+            var result = unsortedLinkedPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(three, 30), (four, 40), (one, 10), (two, 20), (five, 50), (six, 60), (seven, 70), (eight, 80)]", Is.EqualTo(result));
+        }
+
+
+
+        [Test]
+        public void ToString_ThrowsCorrectExceptionMessageWhenToStringIsCalledOnAnEmptyQueue()
+        {
+            // Act
+            var exception = Assert.Throws<QueueUnderflowException>(() => unsortedLinkedPriorityQueue.ToString());
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("No items to display"));
+        }
+
+
+
+        [Test]
+        public void ToString_ThrowsExceptionWhenThetoStringMethodIsCalledOnAnEmptyQueue()
+        {
+            // Assert
+            Assert.That(() => unsortedLinkedPriorityQueue.ToString(), Throws.TypeOf<QueueUnderflowException>());
+        }
+
+
 
 
 
