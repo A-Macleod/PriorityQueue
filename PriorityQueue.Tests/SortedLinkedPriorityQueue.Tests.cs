@@ -31,6 +31,45 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void IsEmpty_CheckTheQueueIsEmptyWhenQueueIsEmpty()
+        {
+            // Assert
+            Assert.That(sortedLinkedPriorityQueue.IsEmpty, Is.True);
+        }
+
+
+
+        [Test]
+        public void IsEmpty_CheckTheQueueIsNotEmptyWhenItemsAreAdded()
+        {
+            // Act
+            sortedLinkedPriorityQueue.Add(new Person("one"), 90);
+
+            // Assert
+            Assert.That(sortedLinkedPriorityQueue.IsEmpty, Is.False);
+        }
+
+
+
+        [Test]
+        public void IsEmpty_CheckTheQueueIsNotEmptyWhenThereAreALotOfItemsInTheQueue()
+        {
+            // Act
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            sortedLinkedPriorityQueue.Add(new Person("two"), 20);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 30);
+            sortedLinkedPriorityQueue.Add(new Person("four"), 40);
+            sortedLinkedPriorityQueue.Add(new Person("five"), 50);
+            sortedLinkedPriorityQueue.Add(new Person("six"), 60);
+            sortedLinkedPriorityQueue.Add(new Person("seven"), 70);
+            sortedLinkedPriorityQueue.Add(new Person("eight"), 80);
+
+            // Assert
+            Assert.That(sortedLinkedPriorityQueue.IsEmpty, Is.False);
+        }
+
+
 
 
 
