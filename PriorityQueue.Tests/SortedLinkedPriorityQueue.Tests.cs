@@ -378,6 +378,57 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Node_ConstructorInitialNextPointerIsNull()
+        {
+            var node = new Node<Person>(new Person("person1"), 10);
+
+            Assert.That(null, Is.EqualTo(node.Next));
+
+        }
+
+
+
+        [Test]
+        public void Node_ConstructorNameIsStoredCorrectly()
+        {
+            var node = new Node<Person>(new Person("person1"), 10);
+
+            Assert.That("person1", Is.EqualTo(node.Item.Name));
+
+        }
+
+
+
+        [Test]
+        public void Node_ConstructorPriorityIsStoredCorrectly()
+        {
+            var node = new Node<Person>(new Person("person1"), 10);
+
+            Assert.That(10, Is.EqualTo(node.Priority));
+
+        }
+
+
+
+        [Test]
+        public void Node_CheckNextPointerPointsToNextNode()
+        {
+            // Arrange
+            var node = new Node<Person>(new Person("person1"), 10);
+            var node1 = new Node<Person>(new Person("person2"), 20);
+
+            // Act
+            node.Next = node1;
+            node1.Next = null;
+
+            // Assert
+            Assert.That(node.Next, Is.EqualTo(node1));
+            Assert.That(node1.Next, Is.Null);
+
+        }
+
+
 
 
 
