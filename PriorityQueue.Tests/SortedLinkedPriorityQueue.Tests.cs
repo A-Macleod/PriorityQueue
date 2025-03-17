@@ -122,6 +122,83 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Remove_RemovesHighestPriorityFromQueue()
+        {
+            // Arrange
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 30);
+            sortedLinkedPriorityQueue.Add(new Person("two"), 20);
+
+            // Act
+            sortedLinkedPriorityQueue.Remove();
+            var head = sortedLinkedPriorityQueue.Head();
+
+            // Assert
+            Assert.That("two", Is.EqualTo(head.Name));
+        }
+
+
+
+        [Test]
+        public void Remove_AddsToTheQueueThenRemovesAllTheItemsFromTheQueueThenThrowsExceptionErrorWhenEmpty()
+        {
+            // Arrange
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            sortedLinkedPriorityQueue.Add(new Person("two"), 20);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 30);
+            sortedLinkedPriorityQueue.Add(new Person("four"), 40);
+            sortedLinkedPriorityQueue.Add(new Person("five"), 50);
+            sortedLinkedPriorityQueue.Add(new Person("six"), 60);
+            sortedLinkedPriorityQueue.Add(new Person("seven"), 70);
+            sortedLinkedPriorityQueue.Add(new Person("eight"), 80);
+
+            // Act
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+
+            // Assert
+            Assert.That(() => sortedLinkedPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
+        }
+
+
+
+        [Test]
+        public void Remove_ThrowsTheCorrectExceptionErrorMessage()
+        {
+            // Act
+            var exception = Assert.Throws<QueueUnderflowException>(() => sortedLinkedPriorityQueue.Remove());
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("Queue is empty"));
+        }
+
+
+
+        [Test]
+        public void Remove_DequeuesItemsFromQueueThrowsExceptionWhenRemovingFromEmptyQueue()
+        {
+            // Arrange
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 30);
+            sortedLinkedPriorityQueue.Add(new Person("two"), 20);
+
+            // Act
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+
+            // Assert
+            Assert.That(() => sortedLinkedPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
+        }
+
+
 
 
 

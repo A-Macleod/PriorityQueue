@@ -185,8 +185,6 @@ namespace PriorityQueue.Tests
         public void Remove_DequeuesItemsFromQueueThrowsExceptionWhenRemovingFromEmptyQueue()
         {
             // Arrange
-            
-            //unsortedLinkedPriorityQueue = new unsortedLinkedPriorityQueue<Person>();
             unsortedLinkedPriorityQueue.Add(new Person("one"), 10);
             unsortedLinkedPriorityQueue.Add(new Person("three"), 30);
             unsortedLinkedPriorityQueue.Add(new Person("two"), 20);
