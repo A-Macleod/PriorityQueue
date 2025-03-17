@@ -112,7 +112,7 @@ namespace PriorityQueue.Tests
         public void Add_AddingItemWithNullNameDoesNotGetAddedToQueue()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person(""), 10);
+            UnsortedArrayPriorityQueue.Add(new Person(null), 10);
 
             // Act
             var result = UnsortedArrayPriorityQueue.Head();

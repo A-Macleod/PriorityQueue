@@ -109,13 +109,12 @@ namespace PriorityQueue.Tests
         public void Add_AddingItemWithNullNameDoesNotGetAddedToQueue()
         {
             // Arrange
-            sortedArrayPriorityQueue.Add(new Person(""), 10);
+            sortedArrayPriorityQueue.Add(new Person(null), 10);
 
             // Act
             var result = sortedArrayPriorityQueue.Head();
 
             // Assert
-
             Assert.That("[(, 10)]", Is.Not.EqualTo(result));
         }
 
