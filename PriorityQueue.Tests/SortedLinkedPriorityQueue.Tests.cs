@@ -200,6 +200,86 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Head_IsTheHighestPriorityItem()
+        {
+            // Act
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 30);
+            sortedLinkedPriorityQueue.Add(new Person("two"), 20);
+
+            var head = sortedLinkedPriorityQueue.Head();
+
+            // Assert
+            Assert.That("three", Is.EqualTo(head.Name));
+        }
+
+
+
+        [Test]
+        public void Head_IsTheHighestPriorityAfterMultipleDeletes()
+        {
+            // Act
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 30);
+            sortedLinkedPriorityQueue.Add(new Person("five"), 50);
+            sortedLinkedPriorityQueue.Add(new Person("seven"), 70);
+
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+
+            var head = sortedLinkedPriorityQueue.Head();
+
+            // Assert
+            Assert.That("three", Is.EqualTo(head.Name));
+        }
+
+
+
+        [Test]
+        public void Head_IsTheHighestPriorityAfterMultipleDeletesAndThenMoreAdds()
+        {
+            // Act
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 30);
+            sortedLinkedPriorityQueue.Add(new Person("five"), 50);
+            sortedLinkedPriorityQueue.Add(new Person("seven"), 70);
+
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+
+            sortedLinkedPriorityQueue.Add(new Person("seven"), 70);
+            sortedLinkedPriorityQueue.Add(new Person("eight"), 80);
+
+            var head = sortedLinkedPriorityQueue.Head();
+
+            // Assert
+            Assert.That("eight", Is.EqualTo(head.Name));
+        }
+
+
+
+        [Test]
+        public void Head_ThrowsCorrectExceptionErrorWhenQueueIsEmpty()
+        {
+            // Act
+            var exception = Assert.Throws<QueueUnderflowException>(() => sortedLinkedPriorityQueue.Remove());
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("Queue is empty"));
+
+        }
+
+
+
+        [Test]
+        public void Head_ThrowsExceptionErrorWhenQueueIsEmpty()
+        {
+            Assert.That(() => sortedLinkedPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
+        }
+
+
+
 
 
 
