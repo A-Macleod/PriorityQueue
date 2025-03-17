@@ -380,22 +380,35 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Node_ConstructorInitialNextPointerIsNull()
+        {
+            var node = new Node<Person>(new Person("person1"), 10);
+
+            Assert.That(null, Is.EqualTo(node.Next));
+            
+        }
 
 
 
+        [Test]
+        public void Node_ConstructorNameIsStoredCorrectly()
+        {
+            var node = new Node<Person>(new Person("person1"), 10);
+
+            Assert.That("person1", Is.EqualTo(node.Item.Name));
+
+        }
 
 
 
+        [Test]
+        public void Node_ConstructorPriorityIsStoredCorrectly()
+        {
+            var node = new Node<Person>(new Person("person1"), 10);
 
+            Assert.That(10, Is.EqualTo(node.Priority));
 
-
-
-
-
-
-
-
-
-
+        }
     }
 }
