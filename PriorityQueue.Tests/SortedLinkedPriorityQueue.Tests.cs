@@ -239,7 +239,7 @@ namespace PriorityQueue.Tests
         [Test]
         public void Head_IsTheHighestPriorityAfterMultipleDeletesAndThenMoreAdds()
         {
-            // Act
+            // Arrange
             sortedLinkedPriorityQueue.Add(new Person("one"), 10);
             sortedLinkedPriorityQueue.Add(new Person("three"), 30);
             sortedLinkedPriorityQueue.Add(new Person("five"), 50);
@@ -251,6 +251,7 @@ namespace PriorityQueue.Tests
             sortedLinkedPriorityQueue.Add(new Person("seven"), 70);
             sortedLinkedPriorityQueue.Add(new Person("eight"), 80);
 
+            // Act
             var head = sortedLinkedPriorityQueue.Head();
 
             // Assert
@@ -278,6 +279,102 @@ namespace PriorityQueue.Tests
             Assert.That(() => sortedLinkedPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
         }
 
+
+
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsInCorrectFormat()
+        {
+            // Arrange
+            sortedLinkedPriorityQueue.Add(new Person("one"), 90);
+
+            // Act
+            var result = sortedLinkedPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(one, 90)]", Is.EqualTo(result));
+        }
+
+
+
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsInCorrectFormatWithMultipleAddsAndIsSortedByPriority()
+        {
+            // Arrange
+            sortedLinkedPriorityQueue.Add(new Person("one"), 50);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 65);
+            sortedLinkedPriorityQueue.Add(new Person("five"), 100);
+
+            // Act
+            var result = sortedLinkedPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(five, 100), (three, 65), (one, 50)]", Is.EqualTo(result));
+        }
+
+
+
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsInCorrectFormatWithMultipleAddsAndMultipleDeletesAndIsSortedByPriority()
+        {
+            // Arrange
+            sortedLinkedPriorityQueue.Add(new Person("two"), 40);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 65);
+            sortedLinkedPriorityQueue.Add(new Person("five"), 100);
+
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+
+            sortedLinkedPriorityQueue.Add(new Person("one"), 50);
+
+            // Act
+            var result = sortedLinkedPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(one, 50), (two, 40)]", Is.EqualTo(result));
+        }
+
+
+
+        [Test]
+        public void ToString_ChecksTheToStringMethodOutputsAllTheItemsInTheSortedListInCorrectOrder()
+        {
+            // Arrange
+            sortedLinkedPriorityQueue.Add(new Person("three"), 30);
+            sortedLinkedPriorityQueue.Add(new Person("four"), 40);
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            sortedLinkedPriorityQueue.Add(new Person("two"), 20);
+            sortedLinkedPriorityQueue.Add(new Person("five"), 50);
+            sortedLinkedPriorityQueue.Add(new Person("six"), 60);
+            sortedLinkedPriorityQueue.Add(new Person("seven"), 70);
+            sortedLinkedPriorityQueue.Add(new Person("eight"), 80);
+
+            // Act
+            var result = sortedLinkedPriorityQueue.ToString();
+
+            // Assert
+            Assert.That("[(eight, 80), (seven, 70), (six, 60), (five, 50), (four, 40), (three, 30), (two, 20), (one, 10)]", Is.EqualTo(result));
+        }
+
+
+
+        [Test]
+        public void ToString_ThrowsCorrectExceptionMessageWhenToStringIsCalledOnAnEmptyQueue()
+        {
+            // Act
+            var exception = Assert.Throws<QueueUnderflowException>(() => sortedLinkedPriorityQueue.ToString());
+
+            // Assert
+            Assert.That(exception.Message, Is.EqualTo("No items to display"));
+        }
+
+
+
+        [Test]
+        public void ToString_ThrowsExceptionWhenThetoStringMethodIsCalledOnAnEmptyQueue()
+        {
+            // Assert
+            Assert.That(() => sortedLinkedPriorityQueue.ToString(), Throws.TypeOf<QueueUnderflowException>());
+        }
 
 
 
