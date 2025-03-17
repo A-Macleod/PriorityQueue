@@ -71,6 +71,56 @@ namespace PriorityQueue.Tests
 
 
 
+        [Test]
+        public void Add_AddingOneItemToQueue()
+        {
+            // Arrange
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+
+            // Act
+            var head = sortedLinkedPriorityQueue.Head();
+
+            // Assert
+            Assert.That("one", Is.EqualTo(head.Name));
+        }
+
+
+
+        [Test]
+        public void Add_AddingRemovingThenAddingWhileTrackingTheHighestPriority()
+        {
+            sortedLinkedPriorityQueue.Add(new Person("one"), 10);
+            sortedLinkedPriorityQueue.Add(new Person("four"), 40);
+            sortedLinkedPriorityQueue.Add(new Person("two"), 20);
+            sortedLinkedPriorityQueue.Add(new Person("three"), 30);
+
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+            sortedLinkedPriorityQueue.Remove();
+
+            sortedLinkedPriorityQueue.Add(new Person("five"), 50);
+
+            var head = sortedLinkedPriorityQueue.Head();
+
+            Assert.That("five", Is.EqualTo(head.Name));
+        }
+
+
+
+        [Test]
+        public void Add_AddingItemWithNullNameDoesNotGetAddedToQueue()
+        {
+            // Arrange
+            sortedLinkedPriorityQueue.Add(new Person(null), 10);
+
+            // Act
+            var result = sortedLinkedPriorityQueue.Head();
+
+            // Assert
+            Assert.That("[(, 10)]", Is.Not.EqualTo(result));
+        }
+
+
 
 
 
