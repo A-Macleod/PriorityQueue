@@ -115,6 +115,7 @@
     <Compile Include="SortedArrayPriorityQueue.Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnsortedArrayPriorityQueue.Tests.cs" />
+    <Compile Include="UnsortedLinkedPriorityQueue.Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
