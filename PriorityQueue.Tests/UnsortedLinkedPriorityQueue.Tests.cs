@@ -410,5 +410,24 @@ namespace PriorityQueue.Tests
             Assert.That(10, Is.EqualTo(node.Priority));
 
         }
+
+
+
+        [Test]
+        public void Node_CheckNextPointerPointsToNextNode()
+        {
+            // Arrange
+            var node = new Node<Person>(new Person("person1"), 10);
+            var node1 = new Node<Person>(new Person("person2"), 20);
+
+            // Act
+            node.Next = node1;
+            node1.Next = null;
+
+            // Assert
+            Assert.That(node.Next, Is.EqualTo(node1));
+            Assert.That(node1.Next, Is.Null);
+
+        }
     }
 }
