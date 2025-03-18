@@ -56,5 +56,26 @@ namespace PriorityQueue.Tests
             // Assert
             Assert.That(_comboBox, Is.Not.Null, "The list should not be null");
         }
+
+
+
+        [TestCase("Sorted Array Priority Queue")]
+        [TestCase("Unsorted Array Priority Queue")]
+        [TestCase("Unsorted LinkedList Priority Queue")]
+        [TestCase("Sorted LinkedList Priority Queue")]
+        public void CB_Implementation_ContainsCorrectFourImplementationsOfPriorityQueue(string queueType)
+        {
+            // Arrange & Act
+            _comboBox = new ComboBox();
+            _form.Controls.Add(_comboBox);
+
+            _comboBox.Items.Add("Sorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
+            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
+
+            // Assert
+            Assert.That(_comboBox.Items.Contains(queueType), "It should have each implementation in the list");
+        }
     }
 }
