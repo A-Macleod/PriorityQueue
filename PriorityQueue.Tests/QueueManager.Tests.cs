@@ -85,5 +85,32 @@ namespace PriorityQueue.Tests
         {
             Assert.That(4, Is.EqualTo(_comboBox.Items.Count), "It should have 4 items in the list");
         }
+
+
+
+        [TestCase("Sorted Array Priority Queue")]
+        [TestCase("Unsorted Array Priority Queue")]
+        [TestCase("Unsorted LinkedList Priority Queue")]
+        [TestCase("Sorted LinkedList Priority Queue")]
+        public void CB_Implementation_OnSelectionPanelsAreVisible_SimulatingChangingBoolStateAfterListSelection(string queueType)
+        {
+            // Arrange & Act
+            _comboBox = new ComboBox();
+            _form.Controls.Add(_comboBox);
+
+            _comboBox.Items.Add("Sorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
+            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
+
+            var isSelected = false;
+            _comboBox.SelectedIndexChanged += (sender, e) => isSelected = true; // Simulate event handler to change bool state when item is selected
+
+            _comboBox.SelectedItem = queueType; // Testing for each comboBox item
+
+            // Assert
+            Assert.That(isSelected, Is.True, "It should be true after item is selected");
+
+        }
     }
 }
