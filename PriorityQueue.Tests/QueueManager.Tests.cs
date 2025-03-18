@@ -56,15 +56,6 @@ namespace PriorityQueue.Tests
         [Test]
         public void CB_Implementation_IsNotNullWithQueuesInTheList()
         {
-            // Arrange & Act
-            _comboBox = new ComboBox();
-            _form.Controls.Add(_comboBox);
-
-            _comboBox.Items.Add("Sorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
-            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
-
             // Assert
             Assert.That(_comboBox, Is.Not.Null, "The list should not be null");
         }
@@ -77,15 +68,6 @@ namespace PriorityQueue.Tests
         [TestCase("Sorted LinkedList Priority Queue")]
         public void CB_Implementation_ContainsCorrectFourImplementationsOfPriorityQueue(string queueType)
         {
-            // Arrange & Act
-            _comboBox = new ComboBox();
-            _form.Controls.Add(_comboBox);
-
-            _comboBox.Items.Add("Sorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
-            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
-
             // Assert
             Assert.That(_comboBox.Items.Contains(queueType), "It should have each implementation in the list");
         }
@@ -106,15 +88,6 @@ namespace PriorityQueue.Tests
         [TestCase("Sorted LinkedList Priority Queue")]
         public void CB_Implementation_OnSelectionPanelsAreVisible_SimulatingChangingBoolStateAfterListSelection(string queueType)
         {
-            // Arrange & Act
-            _comboBox = new ComboBox();
-            _form.Controls.Add(_comboBox);
-
-            _comboBox.Items.Add("Sorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
-            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
-
             var isSelected = false;
             _comboBox.SelectedIndexChanged += (sender, e) => isSelected = true; // Simulate event handler to change bool state when item is selected
 
@@ -122,7 +95,6 @@ namespace PriorityQueue.Tests
 
             // Assert
             Assert.That(isSelected, Is.True, "It should be true after item is selected");
-
         }
 
 
@@ -131,11 +103,6 @@ namespace PriorityQueue.Tests
         public void CB_Implementation_SimulateQueueSelectionAndQueueInstantiationSortedArray()
         {
             SortedArrayPriorityQueue<Person> sortedArray = null;            
-
-            // Arrange
-
-
-
 
             // Act
             _comboBox.SelectedIndexChanged += (sender, e) =>
@@ -158,18 +125,6 @@ namespace PriorityQueue.Tests
         {
             UnsortedArrayPriorityQueue<Person> unsortedArray = null;
 
-            // Arrange
-            _comboBox = new ComboBox();
-            _form.Controls.Add(_comboBox);
-
-            _label = new Label();
-            _form.Controls.Add(_label);
-
-            _comboBox.Items.Add("Sorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
-            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
-
             // Act
             _comboBox.SelectedIndexChanged += (sender, e) =>
             {
@@ -191,18 +146,6 @@ namespace PriorityQueue.Tests
         {
             UnsortedLinkedPriorityQueue<Person> unsortedLinkedList = null;
 
-            // Arrange
-            _comboBox = new ComboBox();
-            _form.Controls.Add(_comboBox);
-
-            _label = new Label();
-            _form.Controls.Add(_label);
-
-            _comboBox.Items.Add("Sorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
-            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
-
             // Act
             _comboBox.SelectedIndexChanged += (sender, e) =>
             {
@@ -223,19 +166,6 @@ namespace PriorityQueue.Tests
         public void CB_Implementation_SimulateQueueSelectionAndQueueInstantiationSortedList()
         {
             SortedLinkedPriorityQueue<Person> sortedLinkedList = null;
-
-            // Arrange
-            _comboBox = new ComboBox();
-            _form.Controls.Add(_comboBox);
-
-            _label = new Label();
-            _form.Controls.Add(_label);
-
-
-            _comboBox.Items.Add("Sorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
-            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
 
             // Act
             _comboBox.SelectedIndexChanged += (sender, e) =>
