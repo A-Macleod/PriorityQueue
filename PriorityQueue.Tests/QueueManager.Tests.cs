@@ -112,5 +112,33 @@ namespace PriorityQueue.Tests
             Assert.That(isSelected, Is.True, "It should be true after item is selected");
 
         }
+
+
+
+        [Test]
+        public void CB_Implementation_SimulateQueueSelectionAndQueueInstantiationSortedArrayPriorityQueue()
+        {
+            SortedArrayPriorityQueue<Person> sortedArray = null;            
+
+            // Arrange
+            _comboBox = new ComboBox();
+            _form.Controls.Add(_comboBox);
+
+            _comboBox.Items.Add("Sorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
+            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
+
+            // Act
+            _comboBox.SelectedIndexChanged += (sender, e) =>
+            {
+                sortedArray = new SortedArrayPriorityQueue<Person>(8);
+            };
+
+            _comboBox.SelectedItem = "Sorted Array Priority Queue"; // Trigger the event handler for selecting the list option
+
+            // Assert
+            Assert.That(sortedArray, Is.InstanceOf<SortedArrayPriorityQueue<Person>>());
+        }
     }
 }
