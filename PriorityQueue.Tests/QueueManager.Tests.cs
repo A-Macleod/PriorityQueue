@@ -19,6 +19,7 @@ namespace PriorityQueue.Tests
 
         private QueueManager _form;
         private ComboBox _comboBox;
+        private Label _label;
 
 
 
@@ -27,7 +28,18 @@ namespace PriorityQueue.Tests
         {
             _form = new QueueManager();
             _form.Show();
-            
+
+            _comboBox = new ComboBox();
+            _form.Controls.Add(_comboBox);
+
+            _label = new Label();
+            _form.Controls.Add(_label);
+
+            _comboBox.Items.Add("Sorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
+            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
+
         }
 
 
@@ -121,24 +133,22 @@ namespace PriorityQueue.Tests
             SortedArrayPriorityQueue<Person> sortedArray = null;            
 
             // Arrange
-            _comboBox = new ComboBox();
-            _form.Controls.Add(_comboBox);
 
-            _comboBox.Items.Add("Sorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted Array Priority Queue");
-            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
-            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
+
+
 
             // Act
             _comboBox.SelectedIndexChanged += (sender, e) =>
             {
                 sortedArray = new SortedArrayPriorityQueue<Person>(8);
+                _label.Text = "New sorted array priority queue created";
             };
 
             _comboBox.SelectedItem = "Sorted Array Priority Queue"; // Trigger the event handler for selecting the list option
 
             // Assert
             Assert.That(sortedArray, Is.InstanceOf<SortedArrayPriorityQueue<Person>>());
+            Assert.That("New sorted array priority queue created", Is.EqualTo(_label.Text));
         }
 
 
@@ -152,6 +162,9 @@ namespace PriorityQueue.Tests
             _comboBox = new ComboBox();
             _form.Controls.Add(_comboBox);
 
+            _label = new Label();
+            _form.Controls.Add(_label);
+
             _comboBox.Items.Add("Sorted Array Priority Queue");
             _comboBox.Items.Add("Unsorted Array Priority Queue");
             _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
@@ -161,12 +174,14 @@ namespace PriorityQueue.Tests
             _comboBox.SelectedIndexChanged += (sender, e) =>
             {
                 unsortedArray = new UnsortedArrayPriorityQueue<Person>(8);
+                _label.Text = "New unsorted array priority queue created";
             };
 
             _comboBox.SelectedItem = "Unsorted Array Priority Queue"; // Trigger the event handler for selecting the list option
 
             // Assert
             Assert.That(unsortedArray, Is.InstanceOf<UnsortedArrayPriorityQueue<Person>>());
+            Assert.That("New unsorted array priority queue created", Is.EqualTo(_label.Text));
         }
 
 
@@ -180,6 +195,9 @@ namespace PriorityQueue.Tests
             _comboBox = new ComboBox();
             _form.Controls.Add(_comboBox);
 
+            _label = new Label();
+            _form.Controls.Add(_label);
+
             _comboBox.Items.Add("Sorted Array Priority Queue");
             _comboBox.Items.Add("Unsorted Array Priority Queue");
             _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
@@ -189,12 +207,14 @@ namespace PriorityQueue.Tests
             _comboBox.SelectedIndexChanged += (sender, e) =>
             {
                 unsortedLinkedList = new UnsortedLinkedPriorityQueue<Person>();
+                _label.Text = "New unsorted linked priority queue created";
             };
 
             _comboBox.SelectedItem = "Unsorted LinkedList Priority Queue"; // Trigger the event handler for selecting the list option
 
             // Assert
             Assert.That(unsortedLinkedList, Is.InstanceOf<UnsortedLinkedPriorityQueue<Person>>());
+            Assert.That("New unsorted linked priority queue created", Is.EqualTo(_label.Text));
         }
 
 
@@ -208,6 +228,10 @@ namespace PriorityQueue.Tests
             _comboBox = new ComboBox();
             _form.Controls.Add(_comboBox);
 
+            _label = new Label();
+            _form.Controls.Add(_label);
+
+
             _comboBox.Items.Add("Sorted Array Priority Queue");
             _comboBox.Items.Add("Unsorted Array Priority Queue");
             _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
@@ -217,12 +241,14 @@ namespace PriorityQueue.Tests
             _comboBox.SelectedIndexChanged += (sender, e) =>
             {
                 sortedLinkedList = new SortedLinkedPriorityQueue<Person>();
+                _label.Text = "New sorted linked priority queue created";
             };
 
             _comboBox.SelectedItem = "Sorted LinkedList Priority Queue"; // Trigger the event handler for selecting the list option
 
             // Assert
             Assert.That(sortedLinkedList, Is.InstanceOf<SortedLinkedPriorityQueue<Person>>());
+            Assert.That("New sorted linked priority queue created", Is.EqualTo(_label.Text));
         }
     }
 }
