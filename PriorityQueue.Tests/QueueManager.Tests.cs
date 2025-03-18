@@ -116,7 +116,7 @@ namespace PriorityQueue.Tests
 
 
         [Test]
-        public void CB_Implementation_SimulateQueueSelectionAndQueueInstantiationSortedArrayPriorityQueue()
+        public void CB_Implementation_SimulateQueueSelectionAndQueueInstantiationSortedArray()
         {
             SortedArrayPriorityQueue<Person> sortedArray = null;            
 
@@ -139,6 +139,34 @@ namespace PriorityQueue.Tests
 
             // Assert
             Assert.That(sortedArray, Is.InstanceOf<SortedArrayPriorityQueue<Person>>());
+        }
+
+
+
+        [Test]
+        public void CB_Implementation_SimulateQueueSelectionAndQueueInstantiationUnsortedArray()
+        {
+            UnsortedArrayPriorityQueue<Person> unsortedArray = null;
+
+            // Arrange
+            _comboBox = new ComboBox();
+            _form.Controls.Add(_comboBox);
+
+            _comboBox.Items.Add("Sorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted Array Priority Queue");
+            _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
+            _comboBox.Items.Add("Sorted LinkedList Priority Queue");
+
+            // Act
+            _comboBox.SelectedIndexChanged += (sender, e) =>
+            {
+                unsortedArray = new UnsortedArrayPriorityQueue<Person>(8);
+            };
+
+            _comboBox.SelectedItem = "Unsorted Array Priority Queue"; // Trigger the event handler for selecting the list option
+
+            // Assert
+            Assert.That(unsortedArray, Is.InstanceOf<UnsortedArrayPriorityQueue<Person>>());
         }
     }
 }
