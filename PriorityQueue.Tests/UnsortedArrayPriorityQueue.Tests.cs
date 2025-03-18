@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using PriorityQueue;
 
 namespace PriorityQueue.Tests
 {
     public class UnsortedArrayPriorityQueueTests
     {
 
-        private UnsortedArrayPriorityQueue<Person> UnsortedArrayPriorityQueue;
+        private UnsortedArrayPriorityQueue<Person> unsortedArrayPriorityQueue;
 
 
 
@@ -19,7 +20,7 @@ namespace PriorityQueue.Tests
         public void Setup()
         {
             int size = 8;
-            UnsortedArrayPriorityQueue = new UnsortedArrayPriorityQueue<Person>(size);
+            unsortedArrayPriorityQueue = new UnsortedArrayPriorityQueue<Person>(size);
         }
 
 
@@ -27,7 +28,7 @@ namespace PriorityQueue.Tests
         [TearDown]
         public void TearDown()
         {
-            UnsortedArrayPriorityQueue = null;
+            unsortedArrayPriorityQueue = null;
         }
 
 
@@ -36,7 +37,7 @@ namespace PriorityQueue.Tests
         public void IsEmpty_CheckTheQueueIsEmptyWhenQueueIsEmpty()
         {
             // Assert
-            Assert.That(UnsortedArrayPriorityQueue.IsEmpty, Is.True);
+            Assert.That(unsortedArrayPriorityQueue.IsEmpty, Is.True);
         }
 
 
@@ -45,10 +46,10 @@ namespace PriorityQueue.Tests
         public void IsEmpty_CheckTheQueueIsNotEmptyWhenItemsAreAdded()
         {
             // Act
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 90);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 90);
 
             // Assert
-            Assert.That(UnsortedArrayPriorityQueue.IsEmpty, Is.False);
+            Assert.That(unsortedArrayPriorityQueue.IsEmpty, Is.False);
         }
 
 
@@ -57,17 +58,17 @@ namespace PriorityQueue.Tests
         public void IsEmpty_CheckTheQueueIsNotEmptyWhenQueueIsFull()
         {
             // Act
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("four"), 40);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
-            UnsortedArrayPriorityQueue.Add(new Person("six"), 60);
-            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
-            UnsortedArrayPriorityQueue.Add(new Person("eight"), 80);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("four"), 40);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("six"), 60);
+            unsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            unsortedArrayPriorityQueue.Add(new Person("eight"), 80);
 
             // Assert
-            Assert.That(UnsortedArrayPriorityQueue.IsEmpty, Is.False);
+            Assert.That(unsortedArrayPriorityQueue.IsEmpty, Is.False);
         }
 
 
@@ -76,10 +77,10 @@ namespace PriorityQueue.Tests
         public void Add_AddingOneItemToQueue()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
 
             // Act
-            var head = UnsortedArrayPriorityQueue.Head();
+            var head = unsortedArrayPriorityQueue.Head();
 
             // Assert
             Assert.That("one", Is.EqualTo(head.Name));
@@ -90,18 +91,18 @@ namespace PriorityQueue.Tests
         [Test]
         public void Add_AddingRemovingThenAddingWhileTrackingTheHighestPriority()
         {
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("four"), 40);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("four"), 40);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
 
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
 
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 50);
 
-            var head = UnsortedArrayPriorityQueue.Head();
+            var head = unsortedArrayPriorityQueue.Head();
 
             Assert.That("five", Is.EqualTo(head.Name));
         }
@@ -112,10 +113,10 @@ namespace PriorityQueue.Tests
         public void Add_AddingItemWithNullNameDoesNotGetAddedToQueue()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person(null), 10);
+            unsortedArrayPriorityQueue.Add(new Person(null), 10);
 
             // Act
-            var result = UnsortedArrayPriorityQueue.Head();
+            var result = unsortedArrayPriorityQueue.Head();
 
             // Assert
             Assert.That("[(, 10)]", Is.Not.EqualTo(result)); ;
@@ -127,17 +128,17 @@ namespace PriorityQueue.Tests
         public void Add_ThrowsTheCorrectExceptionErrorMessageWhenAddingNewItemAndTheQueueIsFull()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("four"), 40);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
-            UnsortedArrayPriorityQueue.Add(new Person("six"), 60);
-            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
-            UnsortedArrayPriorityQueue.Add(new Person("eight"), 80);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("four"), 40);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("six"), 60);
+            unsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            unsortedArrayPriorityQueue.Add(new Person("eight"), 80);
 
             // Act
-            var exception = Assert.Throws<QueueOverflowException>(() => UnsortedArrayPriorityQueue.Add(new Person("nine"), 90));
+            var exception = Assert.Throws<QueueOverflowException>(() => unsortedArrayPriorityQueue.Add(new Person("nine"), 90));
 
             // Assert
             Assert.That(exception.Message, Is.EqualTo("Queue is full"));
@@ -151,17 +152,17 @@ namespace PriorityQueue.Tests
         {
 
             // Act
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("four"), 40);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
-            UnsortedArrayPriorityQueue.Add(new Person("six"), 60);
-            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
-            UnsortedArrayPriorityQueue.Add(new Person("eight"), 80);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("four"), 40);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("six"), 60);
+            unsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            unsortedArrayPriorityQueue.Add(new Person("eight"), 80);
 
             // Assert
-            Assert.That(() => UnsortedArrayPriorityQueue.Add(new Person("nine"), 90), Throws.TypeOf<QueueOverflowException>());
+            Assert.That(() => unsortedArrayPriorityQueue.Add(new Person("nine"), 90), Throws.TypeOf<QueueOverflowException>());
         }
 
 
@@ -171,17 +172,17 @@ namespace PriorityQueue.Tests
         public void Constructor_InitializesArrayWithCorrectSizeThrowsOverflowExceptionWhenExceeded()
         {
             // Act
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("four"), 40);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
-            UnsortedArrayPriorityQueue.Add(new Person("six"), 60);
-            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
-            UnsortedArrayPriorityQueue.Add(new Person("eight"), 80);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("four"), 40);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("six"), 60);
+            unsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            unsortedArrayPriorityQueue.Add(new Person("eight"), 80);
 
             // Act & Assert
-            Assert.That(() => UnsortedArrayPriorityQueue.Add(new Person("nine"), 90), Throws.TypeOf<QueueOverflowException>());
+            Assert.That(() => unsortedArrayPriorityQueue.Add(new Person("nine"), 90), Throws.TypeOf<QueueOverflowException>());
         }
 
 
@@ -190,13 +191,13 @@ namespace PriorityQueue.Tests
         public void Remove_RemovesHighestPriorityFromQueue()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
 
             // Act
-            UnsortedArrayPriorityQueue.Remove();
-            var head = UnsortedArrayPriorityQueue.Head();
+            unsortedArrayPriorityQueue.Remove();
+            var head = unsortedArrayPriorityQueue.Head();
 
             // Assert
             Assert.That("two", Is.EqualTo(head.Name));
@@ -208,27 +209,27 @@ namespace PriorityQueue.Tests
         public void Remove_AddsAndFillsTheQueueThenRemovesAllTheItemsFromTheQueueThenThrowsExceptionErrorWhenEmpty()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("four"), 40);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
-            UnsortedArrayPriorityQueue.Add(new Person("six"), 60);
-            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
-            UnsortedArrayPriorityQueue.Add(new Person("eight"), 80);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("four"), 40);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("six"), 60);
+            unsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            unsortedArrayPriorityQueue.Add(new Person("eight"), 80);
 
             // Act
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
 
             // Assert
-            Assert.That(() => UnsortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
+            Assert.That(() => unsortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
         }
 
 
@@ -237,7 +238,7 @@ namespace PriorityQueue.Tests
         public void Remove_ThrowsTheCorrectExceptionErrorMessage()
         {
             // Act
-            var exception = Assert.Throws<QueueUnderflowException>(() => UnsortedArrayPriorityQueue.Remove());
+            var exception = Assert.Throws<QueueUnderflowException>(() => unsortedArrayPriorityQueue.Remove());
 
             // Assert
             Assert.That(exception.Message, Is.EqualTo("Queue is empty"));
@@ -250,19 +251,19 @@ namespace PriorityQueue.Tests
         {
             // Arrange
             int size = 8;
-            UnsortedArrayPriorityQueue = new UnsortedArrayPriorityQueue<Person>(size);
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue = new UnsortedArrayPriorityQueue<Person>(size);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
 
 
             // Act
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
 
             // Assert
-            Assert.That(() => UnsortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
+            Assert.That(() => unsortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
         }
 
 
@@ -271,11 +272,11 @@ namespace PriorityQueue.Tests
         public void Head_IsTheHighestPriorityItem()
         {
             // Act
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
 
-            var head = UnsortedArrayPriorityQueue.Head();
+            var head = unsortedArrayPriorityQueue.Head();
 
             // Assert
             Assert.That("three", Is.EqualTo(head.Name));
@@ -287,15 +288,15 @@ namespace PriorityQueue.Tests
         public void Head_IsTheHighestPriorityAfterMultipleDeletes()
         {
             // Act
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
-            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("seven"), 70);
 
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
 
-            var head = UnsortedArrayPriorityQueue.Head();
+            var head = unsortedArrayPriorityQueue.Head();
 
             // Assert
             Assert.That("three", Is.EqualTo(head.Name));
@@ -307,18 +308,18 @@ namespace PriorityQueue.Tests
         public void Head_IsTheHighestPriorityAfterMultipleDeletesAndThenMoreAdds()
         {
             // Act
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
-            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("seven"), 70);
 
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
 
-            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
-            UnsortedArrayPriorityQueue.Add(new Person("eight"), 80);
+            unsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            unsortedArrayPriorityQueue.Add(new Person("eight"), 80);
 
-            var head = UnsortedArrayPriorityQueue.Head();
+            var head = unsortedArrayPriorityQueue.Head();
 
             // Assert
             Assert.That("eight", Is.EqualTo(head.Name));
@@ -330,7 +331,7 @@ namespace PriorityQueue.Tests
         public void Head_ThrowsCorrectExceptionErrorWhenQueueIsEmpty()
         {
             // Act
-            var exception = Assert.Throws<QueueUnderflowException>(() => UnsortedArrayPriorityQueue.Remove());
+            var exception = Assert.Throws<QueueUnderflowException>(() => unsortedArrayPriorityQueue.Remove());
 
             // Assert
             Assert.That(exception.Message, Is.EqualTo("Queue is empty"));
@@ -342,7 +343,7 @@ namespace PriorityQueue.Tests
         [Test]
         public void Head_ThrowsExceptionErrorWhenQueueIsEmpty()
         {
-            Assert.That(() => UnsortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
+            Assert.That(() => unsortedArrayPriorityQueue.Remove(), Throws.TypeOf<QueueUnderflowException>());
         }
 
 
@@ -351,10 +352,10 @@ namespace PriorityQueue.Tests
         public void ToString_ChecksTheToStringMethodOutputsInCorrectFormat()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 90);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 90);
 
             // Act
-            var result = UnsortedArrayPriorityQueue.ToString();
+            var result = unsortedArrayPriorityQueue.ToString();
 
             // Assert
             Assert.That("[(one, 90)]", Is.EqualTo(result));
@@ -366,12 +367,12 @@ namespace PriorityQueue.Tests
         public void ToString_ChecksTheToStringMethodOutputsInCorrectFormatWithMultipleAddsAndIsNotSorted()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 50);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 65);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 100);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 65);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 100);
 
             // Act
-            var result = UnsortedArrayPriorityQueue.ToString();
+            var result = unsortedArrayPriorityQueue.ToString();
 
             // Assert
             Assert.That("[(one, 50), (three, 65), (five, 100)]", Is.EqualTo(result));
@@ -383,17 +384,17 @@ namespace PriorityQueue.Tests
         public void ToString_ChecksTheToStringMethodOutputsInCorrectFormatWithMultipleAddsAndMultipleDeletesAndIsNotSorted()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 40);
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 65);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 100);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 40);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 65);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 100);
 
-            UnsortedArrayPriorityQueue.Remove();
-            UnsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
+            unsortedArrayPriorityQueue.Remove();
 
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 50);
 
             // Act
-            var result = UnsortedArrayPriorityQueue.ToString();
+            var result = unsortedArrayPriorityQueue.ToString();
 
             // Assert
             Assert.That("[(two, 40), (one, 50)]", Is.EqualTo(result));
@@ -405,17 +406,17 @@ namespace PriorityQueue.Tests
         public void ToString_ChecksTheToStringMethodOutputsAllTheItemsInTheUnsortedArrayInCorrectOrder()
         {
             // Arrange
-            UnsortedArrayPriorityQueue.Add(new Person("three"), 30);
-            UnsortedArrayPriorityQueue.Add(new Person("four"), 40);
-            UnsortedArrayPriorityQueue.Add(new Person("one"), 10);
-            UnsortedArrayPriorityQueue.Add(new Person("two"), 20);
-            UnsortedArrayPriorityQueue.Add(new Person("five"), 50);
-            UnsortedArrayPriorityQueue.Add(new Person("six"), 60);
-            UnsortedArrayPriorityQueue.Add(new Person("seven"), 70);
-            UnsortedArrayPriorityQueue.Add(new Person("eight"), 80);
+            unsortedArrayPriorityQueue.Add(new Person("three"), 30);
+            unsortedArrayPriorityQueue.Add(new Person("four"), 40);
+            unsortedArrayPriorityQueue.Add(new Person("one"), 10);
+            unsortedArrayPriorityQueue.Add(new Person("two"), 20);
+            unsortedArrayPriorityQueue.Add(new Person("five"), 50);
+            unsortedArrayPriorityQueue.Add(new Person("six"), 60);
+            unsortedArrayPriorityQueue.Add(new Person("seven"), 70);
+            unsortedArrayPriorityQueue.Add(new Person("eight"), 80);
 
             // Act
-            var result = UnsortedArrayPriorityQueue.ToString();
+            var result = unsortedArrayPriorityQueue.ToString();
 
             // Assert
             Assert.That("[(three, 30), (four, 40), (one, 10), (two, 20), (five, 50), (six, 60), (seven, 70), (eight, 80)]", Is.EqualTo(result));
@@ -427,7 +428,7 @@ namespace PriorityQueue.Tests
         public void ToString_ThrowsCorrectExceptionMessageWhenToStringIsCalledOnAnEmptyQueue()
         {
             // Act
-            var exception = Assert.Throws<QueueUnderflowException>(() => UnsortedArrayPriorityQueue.ToString());
+            var exception = Assert.Throws<QueueUnderflowException>(() => unsortedArrayPriorityQueue.ToString());
 
             // Assert
             Assert.That(exception.Message, Is.EqualTo("No items to display"));
@@ -439,7 +440,7 @@ namespace PriorityQueue.Tests
         public void ToString_ThrowsExceptionWhenThetoStringMethodIsCalledOnAnEmptyQueue()
         {
             // Assert
-            Assert.That(() => UnsortedArrayPriorityQueue.ToString(), Throws.TypeOf<QueueUnderflowException>());
+            Assert.That(() => unsortedArrayPriorityQueue.ToString(), Throws.TypeOf<QueueUnderflowException>());
         }
 
 

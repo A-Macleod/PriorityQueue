@@ -2,6 +2,7 @@
 using NUnit.Framework.Internal;
 using System;
 using System.Xml.Linq;
+using PriorityQueue;
 
 namespace PriorityQueue.Tests
 {

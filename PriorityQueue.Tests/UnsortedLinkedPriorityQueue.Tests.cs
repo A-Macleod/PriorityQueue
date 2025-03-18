@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using PriorityQueue;
 
 namespace PriorityQueue.Tests
 {
-    public class UnsortedLinkedPriorityQueue
+    public class UnsortedLinkedPriorityQueueTests
     {
 
         private UnsortedLinkedPriorityQueue<Person> unsortedLinkedPriorityQueue;
