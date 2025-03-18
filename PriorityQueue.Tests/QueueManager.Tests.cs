@@ -77,5 +77,13 @@ namespace PriorityQueue.Tests
             // Assert
             Assert.That(_comboBox.Items.Contains(queueType), "It should have each implementation in the list");
         }
+
+
+
+        [Test]
+        public void CB_Implementation_ListContainsFourImplementationsOfPriorityQueue()
+        {
+            Assert.That(4, Is.EqualTo(_comboBox.Items.Count), "It should have 4 items in the list");
+        }
     }
 }
