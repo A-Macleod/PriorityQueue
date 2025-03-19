@@ -41,6 +41,15 @@ namespace PriorityQueue.Tests
             _label = new Label();
             _form.Controls.Add(_label);
 
+            _button = new Button();
+            _form.Controls.Add(_button);
+
+            _textBox = new TextBox();   // Person name text box
+            _form.Controls.Add(_textBox);
+
+            _numericUpDown = new NumericUpDown();   // Priority numeric up down
+            _form.Controls.Add(_numericUpDown);
+
             _comboBox.Items.Add("Sorted Array Priority Queue");
             _comboBox.Items.Add("Unsorted Array Priority Queue");
             _comboBox.Items.Add("Unsorted LinkedList Priority Queue");
@@ -196,6 +205,7 @@ namespace PriorityQueue.Tests
         {
             // Arrange
             _textBox = new TextBox();   // Person name text box
+            _form.Controls.Add(_textBox);
 
             // Act
             _textBox.Text = "personName";
@@ -211,6 +221,7 @@ namespace PriorityQueue.Tests
         {
             // Arrange
             _textBox = new TextBox();   // Person name text box
+            _form.Controls.Add(_textBox);
 
             // Act
             _textBox.Text = null;
@@ -226,6 +237,7 @@ namespace PriorityQueue.Tests
         {
             // Arrange
             _textBox = new TextBox();   // Person name text box
+            _form.Controls.Add(_textBox);
 
             // Act
             _textBox.Text = " ";
@@ -239,29 +251,28 @@ namespace PriorityQueue.Tests
         [Test]
         public void Btn_AddQueue_Click_SimulateAddingPersonNameAndPriorityAssertingPersonHasBeenAdded()
         {
-            UnsortedArrayPriorityQueue<Person> queue = null;
-
             // Arrange
-            _button = new Button(); // Add button
-            _textBox = new TextBox();   // Person name text box
-            _numericUpDown = new NumericUpDown();   // Priority numeric up down                                                    
-
-            _button.Click += (sender, e) =>
+            UnsortedArrayPriorityQueue<Person> queue = new UnsortedArrayPriorityQueue<Person>(8);
+            bool isValidName = false;
+ 
+            _button.Click += (sender, e) => isValidName = true;
             {
-                _textBox.Text = "personName" ;
+                _textBox.Text = "personName";
                 _numericUpDown.Value = 50;
-                int numericInt = (int)_numericUpDown.Value;  // _numbericUpDown.Value is of type Decimal, we need to convert to Int
+                int numericInt = (int)_numericUpDown.Value;  // _numericUpDown.Value is of type Decimal, we need to convert to Int
 
                 Person person = new Person(_textBox.Text);
                 queue.Add(person, numericInt);
 
-                //Assert.That("personName", Is.EqualTo(person.Name));
-                _label.Text = "Added " + person.ToString();
-
-                Assert.That("Added personName", Is.EqualTo(_label.Text));
-
             };
+
+            // Act
+            _button.PerformClick();
+
+            // Assert
+            Assert.That("[(personName, 50)]", Is.EqualTo(queue.ToString()));
         }
+
 
     }
 }
