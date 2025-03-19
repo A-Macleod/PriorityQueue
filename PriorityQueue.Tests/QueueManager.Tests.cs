@@ -195,9 +195,7 @@ namespace PriorityQueue.Tests
         public void Btn_AddQueue_Click_SimulateAddingPersonNameToTextBoxItIsNotNullOrWhitespace()
         {
             // Arrange
-            _button = new Button(); // Add button
             _textBox = new TextBox();   // Person name text box
-            _numericUpDown = new NumericUpDown();   // Priority numeric up down
 
             // Act
             _textBox.Text = "personName";
@@ -212,9 +210,7 @@ namespace PriorityQueue.Tests
         public void Btn_AddQueue_Click_SimulateAddingPersonNameToTextBoxThatIsNull()
         {
             // Arrange
-            _button = new Button(); // Add button
             _textBox = new TextBox();   // Person name text box
-            _numericUpDown = new NumericUpDown();   // Priority numeric up down
 
             // Act
             _textBox.Text = null;
@@ -229,9 +225,7 @@ namespace PriorityQueue.Tests
         public void Btn_AddQueue_Click_SimulateAddingPersonNameToTextBoxThatIsWhitespace()
         {
             // Arrange
-            _button = new Button(); // Add button
             _textBox = new TextBox();   // Person name text box
-            _numericUpDown = new NumericUpDown();   // Priority numeric up down
 
             // Act
             _textBox.Text = " ";
@@ -239,5 +233,35 @@ namespace PriorityQueue.Tests
             // Assert
             Assert.That(_textBox.Text, Is.Null.Or.WhiteSpace);
         }
+
+
+
+        [Test]
+        public void Btn_AddQueue_Click_SimulateAddingPersonNameAndPriorityAssertingPersonHasBeenAdded()
+        {
+            UnsortedArrayPriorityQueue<Person> queue = null;
+
+            // Arrange
+            _button = new Button(); // Add button
+            _textBox = new TextBox();   // Person name text box
+            _numericUpDown = new NumericUpDown();   // Priority numeric up down                                                    
+
+            _button.Click += (sender, e) =>
+            {
+                _textBox.Text = "personName" ;
+                _numericUpDown.Value = 50;
+                int numericInt = (int)_numericUpDown.Value;  // _numbericUpDown.Value is of type Decimal, we need to convert to Int
+
+                Person person = new Person(_textBox.Text);
+                queue.Add(person, numericInt);
+
+                //Assert.That("personName", Is.EqualTo(person.Name));
+                _label.Text = "Added " + person.ToString();
+
+                Assert.That("Added personName", Is.EqualTo(_label.Text));
+
+            };
+        }
+
     }
 }
