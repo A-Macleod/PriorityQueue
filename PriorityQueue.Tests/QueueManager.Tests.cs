@@ -196,11 +196,7 @@ namespace PriorityQueue.Tests
         {
             // Arrange
             _button = new Button(); // Add button
-
-            
             _textBox = new TextBox();   // Person name text box
-
-             
             _numericUpDown = new NumericUpDown();   // Priority numeric up down
 
             // Act
@@ -208,6 +204,40 @@ namespace PriorityQueue.Tests
             
             // Assert
             Assert.That(_textBox.Text, Is.Not.Null.And.Not.WhiteSpace);
+        }
+
+
+
+        [Test]
+        public void Btn_AddQueue_Click_SimulateAddingPersonNameToTextBoxThatIsNull()
+        {
+            // Arrange
+            _button = new Button(); // Add button
+            _textBox = new TextBox();   // Person name text box
+            _numericUpDown = new NumericUpDown();   // Priority numeric up down
+
+            // Act
+            _textBox.Text = null;
+
+            // Assert
+            Assert.That(_textBox.Text, Is.Null.Or.WhiteSpace);
+        }
+
+
+
+        [Test]
+        public void Btn_AddQueue_Click_SimulateAddingPersonNameToTextBoxThatIsWhitespace()
+        {
+            // Arrange
+            _button = new Button(); // Add button
+            _textBox = new TextBox();   // Person name text box
+            _numericUpDown = new NumericUpDown();   // Priority numeric up down
+
+            // Act
+            _textBox.Text = " ";
+
+            // Assert
+            Assert.That(_textBox.Text, Is.Null.Or.WhiteSpace);
         }
     }
 }
