@@ -274,5 +274,24 @@ namespace PriorityQueue.Tests
         }
 
 
+
+        [Test]
+        public void Btn_AddQueue_Click_SimulateAddingNoPersonNameAndPriorityAssertingPersonNameHasNotBeenAdded()
+        {
+
+            bool isValidName = true;
+
+            _button.Click += (sender, e) => isValidName = false;
+            {
+
+                _label.Text = "Please include name for new priority queue item";
+
+            };
+
+            _button.PerformClick();
+
+            Assert.That("Please include name for new priority queue item", Is.EqualTo(_label.Text));
+        }
+
     }
 }
