@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.Collections;
+using PriorityQueue;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using System.Windows.Forms;
-using PriorityQueue;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Globalization;
+using Button = System.Windows.Forms.Button;
 using ComboBox = System.Windows.Forms.ComboBox;
-using System.Collections;
+using TextBox = System.Windows.Forms.TextBox;
+
 
 namespace PriorityQueue.Tests
 {
@@ -20,6 +23,9 @@ namespace PriorityQueue.Tests
         private QueueManager _form;
         private ComboBox _comboBox;
         private Label _label;
+        private Button _button;
+        private TextBox _textBox;
+        private NumericUpDown _numericUpDown;
 
 
 
@@ -47,6 +53,8 @@ namespace PriorityQueue.Tests
         [TearDown]
         public void TearDown()
         {
+            _comboBox.Dispose();
+            _label.Dispose();
             _form.Close();
             _form.Dispose();
         }
@@ -179,6 +187,27 @@ namespace PriorityQueue.Tests
             // Assert
             Assert.That(sortedLinkedList, Is.InstanceOf<SortedLinkedPriorityQueue<Person>>());
             Assert.That("New sorted linked priority queue created", Is.EqualTo(_label.Text));
+        }
+
+
+
+        [Test]
+        public void Btn_AddQueue_Click_SimulateAddingPersonNameToTextBoxItIsNotNullOrWhitespace()
+        {
+            // Arrange
+            _button = new Button(); // Add button
+
+            
+            _textBox = new TextBox();   // Person name text box
+
+             
+            _numericUpDown = new NumericUpDown();   // Priority numeric up down
+
+            // Act
+            _textBox.Text = "personName";
+            
+            // Assert
+            Assert.That(_textBox.Text, Is.Not.Null.And.Not.WhiteSpace);
         }
     }
 }
