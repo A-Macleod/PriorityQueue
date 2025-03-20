@@ -1,16 +1,12 @@
 
-![Docker Image Size](https://img.shields.io/docker/image-size/:user/:repo)
+<div align="center">
+<img src="https://github.com/user-attachments/assets/3f546352-b5c7-4f97-af06-1d2d7bb7b02a"/>
+</div>
 
-
-![SourceForge Languages](https://img.shields.io/sourceforge/languages/:project)
-
-![GitHub last commit](https://img.shields.io/github/last-commit/:user/:repo)
-
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/:user/:repo/:workflow)
-
-
-
-
+<p align="center">
+  <img src="https://img.shields.io/badge/Language-C%23-Orange"/>
+  <img src="https://img.shields.io/badge/Last%20Commit-March%202025-Orange">
+</p>
 
 # *Software Construction UG409765*
 
@@ -24,6 +20,8 @@ This repository is **Assessment 1** of the module **UG409765 - Software Construc
 * Sorted Array Priority Queue
 * Sorted Linked List Priority Queue
 * Nunit
+
+![PQ](https://github.com/user-attachments/assets/9dad2c5d-ad1d-47b4-9cc4-e123d0dcc5c6)
 
 ---
 
@@ -109,12 +107,8 @@ dotnet run
 # Collaboration 
 I am currently not looking for collaborators on this project
 
----
-
 # License
 UHI
-
----
 
 # Contact
 For any issues or questions, please reach out to 0308180@uhi.ac.uk
