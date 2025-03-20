@@ -27,9 +27,9 @@ namespace PriorityQueue
         /// Constructor for the Node class. It will store the generic type Item, the 
         /// Priority and the Pointer to the Next Node
         /// </summary>
-        /// <param name="data">The name of the person</param>
+        /// <param name="item">The name of the person</param>
         /// <param name="priority">The priority of the person</param>
-        /// <param name="next">The pointer to the Next Node</param>
+        /// <param name="Next">The pointer to the Next Node</param>
         public Node(T item, int priority)
         {
             Item = item;

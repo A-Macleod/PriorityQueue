@@ -220,9 +220,9 @@ namespace PriorityQueue
             Node<T> currentNode = _head;
             string result = "[";
 
-            while (currentNode != null)     // Keep traversing until the end of the LinkedList
+            while (currentNode != null)     
             {
-                if (currentNode != _head)   // Seperate results after _head with a comma
+                if (currentNode != _head)   
                 {
                     result += ", ";
                 }
