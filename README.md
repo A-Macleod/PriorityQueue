@@ -12,13 +12,12 @@
 ## Priority Queue Class Library - Assessment 1
 
 ### Description
-This repository is **Assessment 1** of the module **UG409765 - Software Construction** of the **BSc Computing** program at the **University of the Highlands and Islands (UHI)**. It serves as the foundation for the Priority Queue class library, written in C#. The implementations of priority queue consist of four different types of data structure along with Nunit tests for each queue implementation: 
+This repository is **Assessment 1** of the module **UG409765 - Software Construction** of the **BSc Computing** program at the **University of the Highlands and Islands (UHI)**. It serves as the foundation for the Priority Queue class library, written in C#. The implementations of priority queue consist of four different types of data structure along with Nunit tests for each queue implementation and a driver program implemented as a Windows Form Application to allow users to interact with the different queue types: 
 
 * Unsorted Array Priority Queue
 * Unsorted Linked List Priority Queue
 * Sorted Array Priority Queue
 * Sorted Linked List Priority Queue
-* Nunit
 
 <br>
 <br>
