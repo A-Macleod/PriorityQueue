@@ -15,9 +15,6 @@ namespace PriorityQueue
     public class Node<T>
     {
 
-        /// <summary>
-        /// Private fields for Node class with auto properties to get and set the fields
-        /// </summary>
         public T Item { get; set; }
         public int Priority { get; set; }
         public Node<T> Next { get; set; }
