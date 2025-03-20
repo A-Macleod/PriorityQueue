@@ -2,7 +2,6 @@
 <div align="center">
 <img src="https://github.com/user-attachments/assets/3f546352-b5c7-4f97-af06-1d2d7bb7b02a"/>
 </div>
-
 <p align="center">
   <img src="https://img.shields.io/badge/Language-C%23-Orange"/>
   <img src="https://img.shields.io/badge/Last%20Commit-March%202025-Orange">
@@ -21,7 +20,12 @@ This repository is **Assessment 1** of the module **UG409765 - Software Construc
 * Sorted Linked List Priority Queue
 * Nunit
 
-![PQ](https://github.com/user-attachments/assets/9dad2c5d-ad1d-47b4-9cc4-e123d0dcc5c6)
+<br>
+<br>
+<div align="center">
+<img src="https://github.com/user-attachments/assets/9dad2c5d-ad1d-47b4-9cc4-e123d0dcc5c6"/>
+</div>
+
 
 ---
 
